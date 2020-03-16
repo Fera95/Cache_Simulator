@@ -11,23 +11,13 @@ import java.util.List;
  * Clase encargada de realizar las instrucciones al azar con distrubución
  * de Poisson   Y de ejecutarlas 
  */
-public class Nucleo extends Thread{
+public class Nucleo extends Thread implements Constantes{
 
      //Atributos de la clase
     public String Id_Nucleo;
     public String Id_Chip;
     List<Instruccion> Cola_Instrucciones ;
-    
-   //Listas para instrucciones
-    String[] operaciones = {"WRITE","CALC","READ"};
-    List<String> ListaOperaciones = Arrays.asList(operaciones);
-
-    String[] direcciones = {"0000","0001","0010","0011","0100","0101",
-    "0110","0111","1000","1001","1010","1011","1100","1101","1110","1111"};
-    List<String> ListaDirecciones = Arrays.asList(direcciones);    
-    
-    
-    
+   
     //Constructor
     
   public Nucleo(String id,String Id_Chip) {
@@ -46,8 +36,7 @@ public class Nucleo extends Thread{
 
 
 		while (true) { 
-                        
-                        
+                        //Se esperan 5 segundos durmiendo el hilo
 			this.esperarXsegundos(5);
                         //Se genera el primer random 0 a 2 distribuido
                         double  lamda1 =  1.0;
@@ -57,15 +46,13 @@ public class Nucleo extends Thread{
                         int random2 = this.getPoisson15(lamda2);
                         
                         //Se capturan los datos 
-                        
-                        
-                        String operacion_tomada = this.ListaOperaciones.get(random1);
-                        String direccion_tomada = this.ListaDirecciones.get(random2);
+                        String operacion_tomada = Nucleo.ListaOperaciones.get(random1);
+                        String direccion_tomada = Nucleo.ListaDirecciones.get(random2);
                         
                         String dato_well_known;
                         boolean isWrite;
                         
-                        if(operacion_tomada == "CALC" || operacion_tomada == "READ"){
+                        if("CALC".equals(operacion_tomada) || "READ".equals(operacion_tomada)){
                             //Dato well known por el momento
                          dato_well_known = " ";
                          isWrite = false;
@@ -75,18 +62,15 @@ public class Nucleo extends Thread{
                                isWrite = true;
                         }
                         
-                        
-                        
                         //Se crea el objeto instruccion
-                                
-                        
+                               
                         Instruccion  instruccion= new Instruccion(this.Id_Nucleo,this.Id_Chip,operacion_tomada,
                                                                   direccion_tomada, dato_well_known,isWrite);
                         
-                        //Se agrega el objeto en la lista
-                        
+                        //se imprime
                         instruccion.print_info();
                         
+                        //Se agrega el objeto en la lista
                         this.Cola_Instrucciones.add(instruccion);
                         
 		}
@@ -102,7 +86,7 @@ public class Nucleo extends Thread{
     /*
      * funcion encargada de generar un número aleatorio
     * tomado de: https://naps.com.mx/blog/simulacion-en-java-distribucion-poisson/ 
-    *pero adaptado a números entre 0 y 2 se requiere una entrada de alrededor de 4
+    *pero adaptado a números entre 0 y 2 se requiere una entrada de alrededor de 1
     * en el lamda
     */
     
@@ -123,7 +107,7 @@ public  int getPoisson2 (double lambda){
 }
 
 
-//Variación de la función  anterior pero de 0 a 16 con un lamda de 4
+//Variación de la función  anterior pero de 0 a 16 se recomienda un lamda de 4
 
 public  int getPoisson15 (double lambda){
   double L = Math.exp(-lambda);

@@ -8,6 +8,7 @@ package tec.cachesimulator;
 /**
  *
  * @author esteban
+ * Clase para hacer una lista de intrucciones en el sistema 
  */
 public class Instruccion {
     
@@ -16,10 +17,11 @@ public class Instruccion {
     String Operacion;
     String Direccion_memoria;
     String Dato_escribir;
+    //Caso especial para saber si la intrucción modificara un dato en memoria 
     boolean isWrite;
     String separador;
     
-    
+    //Constructor
     public Instruccion(String numero_nucleo,String numero_chip,String operacion,
             String direccion_memoria, String dato_escribir,boolean isWrite){
         
@@ -38,7 +40,6 @@ public class Instruccion {
         
         
     }
-    
     public void print_info(){
         System.out.println(this.Numero_nucleo + ","+ this.Numero_chip + ":"+
                 this.Operacion + " "+ this.Direccion_memoria + this.separador + this.Dato_escribir);
