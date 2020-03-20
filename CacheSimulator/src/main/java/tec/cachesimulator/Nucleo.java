@@ -65,7 +65,7 @@ public class Nucleo extends Thread implements Constantes{
                         //Se crea el objeto instruccion
                                
                         Instruccion  instruccion= new Instruccion(this.Id_Nucleo,this.Id_Chip,operacion_tomada,
-                                                                  direccion_tomada, dato_well_known,isWrite);
+                                                                  direccion_tomada, dato_well_known);
                         
                         //se imprime
                         instruccion.print_info();

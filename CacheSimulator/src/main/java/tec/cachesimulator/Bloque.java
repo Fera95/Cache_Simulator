@@ -17,11 +17,10 @@ public class Bloque {
     String Dato;
     boolean isShared;
 
-    public Bloque(String Direccion, String Estado, String Dato, boolean isShared) {
+    public Bloque(String Direccion, String Dato) {
         this.Direccion = Direccion;
-        this.Estado = Estado;
+        this.Estado = "I";
         this.Dato = Dato;
-        this.isShared = isShared;
     }
 
     public String getDireccion() {

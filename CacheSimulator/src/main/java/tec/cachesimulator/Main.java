@@ -19,8 +19,15 @@ public static void main(String[] args){
        
        
        Memoria memoria1 = new Memoria(16);
-       memoria1.getDatos();
-	
+       Instruccion instruccion1 = new Instruccion("P0","0","WRITE","0000","2");
+       memoria1.ejecutarInstruccion(instruccion1);
+       memoria1.printLog();
+       
+       Instruccion instruccion2 = new Instruccion("P0","0","WRITE","1010","4");
+       memoria1.ejecutarInstruccion(instruccion2);
+       memoria1.printLog();
+       
+       
 }
     
     
