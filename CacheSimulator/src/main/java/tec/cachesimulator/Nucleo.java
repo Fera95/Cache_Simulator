@@ -17,6 +17,7 @@ public class Nucleo extends Thread implements Constantes{
     public String Id_Nucleo;
     public String Id_Chip;
     List<Instruccion> Cola_Instrucciones ;
+    public Clock clk;
    
     //Constructor
     

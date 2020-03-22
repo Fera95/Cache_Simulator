@@ -18,15 +18,22 @@ public static void main(String[] args){
        nucleo1.start();*/
        
        
-       Memoria memoria1 = new Memoria(16);
+       CacheL1 memoria1 = new CacheL1(11,"CacheL1 0P0");
        Instruccion instruccion1 = new Instruccion("P0","0","WRITE","0000","2");
        memoria1.ejecutarInstruccion(instruccion1);
        memoria1.printLog();
+      
        
-       Instruccion instruccion2 = new Instruccion("P0","0","WRITE","1010","4");
-       memoria1.ejecutarInstruccion(instruccion2);
+       memoria1.mostrarMemoria();
+       
+       memoria1.modificarEstado(0,"M");
+       memoria1.printLog();
+       memoria1.modificarDato(3,"Nalgas");
        memoria1.printLog();
        
+       
+       memoria1.mostrarMemoria();
+     
        
 }
     

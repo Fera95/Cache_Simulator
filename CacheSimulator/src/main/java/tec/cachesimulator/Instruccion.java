@@ -39,8 +39,17 @@ public class Instruccion {
         
        
     }
-    
-    
+    //Constructor para instrucciones READ y CALC
+    public Instruccion(String numero_nucleo,String numero_chip,String operacion,
+            String direccion_memoria){
+        
+        this.Numero_nucleo = numero_nucleo;
+        this.Numero_chip = numero_chip;
+        this.Operacion= operacion;
+        this.Direccion_memoria = direccion_memoria;
+        this.Dato = "0";
+       
+    }
 
     public String getNumero_nucleo() {
         return Numero_nucleo;
