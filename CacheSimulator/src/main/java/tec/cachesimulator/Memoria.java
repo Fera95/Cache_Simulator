@@ -23,6 +23,13 @@ public class Memoria implements Constantes{
     public List<Bloque> Bloques_memoria ;
     public String Log;
     public String Nombre;
+    
+    //atributo para saber si la memoria fue secuestrada
+    public boolean Locked;
+    //atributo para saber que instruccion se le está asignando a la memoria
+    public  Instruccion Instruccion_Actual;
+    
+    
 
     public Memoria(int Tamaño_memoria,String Nombre) {
         this.Tamaño_memoria = Tamaño_memoria;
@@ -34,8 +41,36 @@ public class Memoria implements Constantes{
             this.Bloques_memoria.add(bloque);
         }
         this.Nombre = Nombre;
+        this.Locked = false;
     }
 
+    public boolean isLocked() {
+        return Locked;
+    }
+
+    public void setLocked(boolean Locked) {
+        this.Locked = Locked;
+    }
+    
+    
+    
+    public Instruccion getInstruccion_Actual() {
+        return Instruccion_Actual;
+    }
+
+    public void setInstruccion_Actual(Instruccion Instruccion_Actual) {
+        this.Instruccion_Actual = Instruccion_Actual;
+        //Se bloquea memoria
+        this.setLocked(true);
+    }
+    public void UnlockMemory(){
+    
+        //Se desbloquea memoria
+        this.setLocked(false);
+    }
+    
+    
+    
     public int getTamaño_memoria() {
         return Tamaño_memoria;
     }
@@ -46,7 +81,7 @@ public class Memoria implements Constantes{
      
     
     //Funcion encargada de procesar una instruccion esta ejecutara la petición
-    // y devolvera un log con lo ocurrido en forma de string 
+    // y devolvera un log con lo ocurrido en forma de string debera pasarse a monitor y director
     
     
     public void ejecutarInstruccion(Instruccion instruccion)
@@ -59,8 +94,6 @@ public class Memoria implements Constantes{
         String Operacion  = instruccion.getOperacion();
         String Direccion_memoria = instruccion.getDireccion_memoria();
         String Dato = instruccion.getDato();
-        
-      
 
         //Convirtiendo la direccion de memoria a un número en base 10
         

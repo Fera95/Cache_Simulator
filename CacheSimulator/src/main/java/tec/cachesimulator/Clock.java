@@ -18,11 +18,15 @@ public class Clock extends Thread {
      public int clk;
       //tiempo para dormir hilo
      public int tiempo;
+     
+     //Log del sistema
+     
+     public LogManager Log;
 
      //constructor 
     public Clock() {
         this.clk =0;
-        this.tiempo= 1/10;
+        this.tiempo=5;
     }
      
     // funcion que correra el hilo 
@@ -33,7 +37,7 @@ public class Clock extends Thread {
             while(true){
                 //si el clock está activo se llama a LogManager
                 if(this.isActive()){
-                  //  Log.getLastEntry();
+               
                 }
                
                     //Se modifica el clk y se duerne el hilo

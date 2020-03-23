@@ -17,14 +17,17 @@ public class Nucleo extends Thread implements Constantes{
     public String Id_Nucleo;
     public String Id_Chip;
     List<Instruccion> Cola_Instrucciones ;
+    public Cache cache;
     public Clock clk;
    
     //Constructor
     
-  public Nucleo(String id,String Id_Chip) {
+  public Nucleo(String id,String Id_Chip,Cache cacheL1,Clock clk) {
     this.Id_Nucleo=id;
     this.Id_Chip = Id_Chip;
     this.Cola_Instrucciones = new ArrayList<>();
+    this.cache = cacheL1;
+    this.clk = clk;
   }
     
   
@@ -34,12 +37,20 @@ public class Nucleo extends Thread implements Constantes{
    
   @Override
 	public void run() {
-
-
 		while (true) { 
-                        //Se esperan 5 segundos durmiendo el hilo
-			this.esperarXsegundos(5);
-                        //Se genera el primer random 0 a 2 distribuido
+                        if(this.clk.isActive() && this.cache.Locked==false){
+                            this.generarInstruccion();
+                            this.clk.WaitUntilNotActive();
+                        }else{
+                            this.clk.WaitUntilActive();
+                        }     
+		}	
+	}
+  
+  
+        //metodo que genera una instruccion random
+public void generarInstruccion(){
+    //Se genera el primer random 0 a 2 distribuido
                         double  lamda1 =  1.0;
                         int random1 = this.getPoisson2(lamda1);
                         //Se genera el segundo random 0 a 15 distribuido
@@ -59,6 +70,7 @@ public class Nucleo extends Thread implements Constantes{
                          isWrite = false;
                         }
                         else{
+                            //Tiene que cambiarse por lista random de datos de 32 bits
                               dato_well_known = "4A3B";
                                isWrite = true;
                         }
@@ -68,19 +80,11 @@ public class Nucleo extends Thread implements Constantes{
                         Instruccion  instruccion= new Instruccion(this.Id_Nucleo,this.Id_Chip,operacion_tomada,
                                                                   direccion_tomada, dato_well_known);
                         
-                        //se imprime
-                        instruccion.print_info();
+                      
                         
-                        //Se agrega el objeto en la lista
-                        this.Cola_Instrucciones.add(instruccion);
-                        
-		}
-
-		
-	}
-  
-  
-
+                        //Se le envía la instrucción a la clase cache
+                        this.cache.setInstruccion_Actual(instruccion);
+}
     
     
     
@@ -131,16 +135,6 @@ public  int getPoisson15 (double lambda){
    
 }
       
-/*
-Funcion para dormir el hilo
-*/
 
-private void esperarXsegundos(int segundos) {
-		try {
-			Thread.sleep(segundos * 1000);
-		} catch (InterruptedException ex) {
-			Thread.currentThread().interrupt();
-		}
-	}
     
 }

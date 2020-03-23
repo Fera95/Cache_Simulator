@@ -93,7 +93,11 @@ public class Instruccion {
     
     //Metodo para imprimir dato de la instruccion
     public void print_info(){
-        System.out.println(this.Numero_nucleo + ","+ this.Numero_chip + ":"+
+        if(this !=null){
+            System.out.println(this.Numero_nucleo + ","+ this.Numero_chip + ":"+
                 this.Operacion + " "+ this.Direccion_memoria + this.separador + this.Dato);
+        }
+            
+        
     }
 }
