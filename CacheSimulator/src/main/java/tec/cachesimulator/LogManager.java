@@ -7,6 +7,8 @@ package tec.cachesimulator;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,17 +22,29 @@ public class LogManager {
     }
     
     public void WriteLastLog(){
-        try {
-      FileWriter myWriter = new FileWriter("Log.txt");
-      myWriter.write(this.LastLog +"\n");
-      System.out.println(this.LastLog);
-      myWriter.close();
-      //se limpia el último log 
-      this.setLastLog(" ");
-    } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
-    }
+       File archivo;
+       FileWriter escritor;
+       BufferedWriter buffer;
+       PrintWriter printer;
+       
+       try{
+           
+           archivo = new File("Log.txt");
+           escritor = new FileWriter(archivo,true);
+           buffer = new BufferedWriter(escritor);
+           printer = new PrintWriter(buffer);
+           printer.append("\n");
+           printer.append(this.LastLog);
+           printer.close();
+           buffer.close();
+           
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"error"+e);
+                   
+       }
+       
+       
+       
     }
 
     public String getLastLog() {

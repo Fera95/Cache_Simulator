@@ -181,9 +181,9 @@ public class Memoria implements Constantes{
             if("Direccion".equals(Dir)){
                 result = "HIT";
             
-           this.Log = "En " +this.Nombre+ " Se encontró hubo un miss  buscando la direccion " + Direccion + " " + timeStamp;
+           this.Log = "En " +this.Nombre+ " Se hubo un miss  buscando la direccion " + Direccion + " " + timeStamp;
             }else{
-             this.Log = "En " +this.Nombre+ " Se encontró hubo un hit  buscando la direccion " + Direccion + " " + timeStamp;
+             this.Log = "En " +this.Nombre+ " Se hubo un hit  buscando la direccion " + Direccion + " " + timeStamp;
             }       
         }
 

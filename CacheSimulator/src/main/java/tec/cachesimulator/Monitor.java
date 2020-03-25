@@ -20,9 +20,9 @@ public class Monitor extends Observador{
     
     //Creado para debugear
     public int Ciclo;
-    public Monitor(Cache chacheL1_1,Cache chacheL1_2,  Cache cacheL2,LogManager Log){
-        this.cacheL1_1 = chacheL1_1;
-        this.cacheL1_2 = chacheL1_2;
+    public Monitor(Cache cacheL1_1,Cache cacheL1_2,  Cache cacheL2,LogManager Log){
+        this.cacheL1_1 = cacheL1_1;
+        this.cacheL1_2 = cacheL1_2;
         this.cacheL2 = cacheL2;
         this.Log = Log;  
         this.Ciclo = 1;
@@ -30,10 +30,15 @@ public class Monitor extends Observador{
     @Override
     public void actualizar(Instruccion instruccion){
        
-      System.out.println("Instruccion Obtenida");
-      instruccion.print_info();
+        //Prueba Se verifica si hay un escritura en P0 con un checkmiss
+        instruccion.print_info();
+      if("WRITE".equals(instruccion.Operacion) && "P0".equals(instruccion.Numero_nucleo)){
+         this.cacheL1_1.checkMiss(instruccion.Direccion_memoria);
+         this.Log.setLastLog(this.cacheL1_1.devolverLog());
+         this.Log.WriteLastLog();
+      }
       
-      //Se libera L1_1 despues de MEEEESSSSSIIIIII
+    
       
       this.cacheL1_1.UnlockMemory();
     }
