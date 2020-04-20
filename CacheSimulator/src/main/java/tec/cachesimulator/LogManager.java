@@ -38,7 +38,7 @@ public class LogManager {
            printer.close();
            buffer.close();
            
-       }catch(Exception e){
+       }catch(IOException e){
            JOptionPane.showMessageDialog(null,"error"+e);
                    
        }
