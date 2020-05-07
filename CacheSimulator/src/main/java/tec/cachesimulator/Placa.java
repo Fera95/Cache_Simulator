@@ -49,6 +49,10 @@ public class Placa {
       this.memprincipal = MemPrincipal_init;
       
       
+      
+      
+      
+      //Se inicializa 
         //Se instancian los chips
     
     Chip chip0_init = new Chip("0",this.clock,this.log);
@@ -56,6 +60,13 @@ public class Placa {
     
     Chip chip1_init = new Chip("1",this.clock,this.log);
     this.chip1 = chip1_init;
+    
+    
+    //Se incializa el Directorio
+      
+      Direcctorio Directorio_init;
+      Directorio_init = new Direcctorio(this.chip0.cacheL2,this.chip1.cacheL2,this.memprincipal,this.log);
+      this.directorio = Directorio_init;
       
     }
       
