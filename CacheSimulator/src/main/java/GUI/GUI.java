@@ -8,6 +8,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import tec.cachesimulator.Chip;
 import tec.cachesimulator.Clock;
+import tec.cachesimulator.Placa;
 
 public class GUI extends JPanel
 {
@@ -26,7 +27,7 @@ public class GUI extends JPanel
           String[][] data = {{"John", "18", "Male","0"}};
   
           // Creates Table
-          jt = new JTable(data, columnsMemPrincipal)
+          MemoriaPrincipal = new JTable(data, columnsMemPrincipal)
           {
                // Determines if data can be entered by users
                @Override
@@ -57,16 +58,16 @@ public class GUI extends JPanel
   
   
          // Set size of table     
-         jt.setPreferredScrollableViewportSize(new Dimension(450, 63));
+         MemoriaPrincipal.setPreferredScrollableViewportSize(new Dimension(450, 63));
          
         
 
          // This will resize the height of the table automatically 
          // to all data without scrolling. 
-         jt.setFillsViewportHeight(true);
+         MemoriaPrincipal.setFillsViewportHeight(true);
     
 
-         JScrollPane jps = new JScrollPane(jt);
+         JScrollPane jps = new JScrollPane(MemoriaPrincipal);
  
          add(jps);
             
@@ -88,11 +89,11 @@ public class GUI extends JPanel
         //Se agregan los componentes de la logica   
          
          Clock  clk = new Clock();
-         Chip chip1 = new Chip("0",clk);
+         Placa placa = new Placa(clk);
          
          
          clk.start();
-         chip1.Start();
+         placa.Start();
      
      }
 }
