@@ -1,0 +1,9 @@
+
+En CacheL1_1 Se hubo un hit  buscando la direccion 1011 2020/05/06 18:48:38.302
+En CacheL1_1 Se hubo un hit  buscando la direccion 0111 2020/05/07 09:32:15.241
+En CacheL1_1 Se hubo un hit  buscando la direccion 1010 2020/05/07 09:32:55.245
+En CacheL1_1 Se hubo un hit  buscando la direccion 1000 2020/05/07 09:33:05.247
+En CacheL1_1 Se hubo un hit  buscando la direccion 0100 2020/05/07 09:33:55.252
+En CacheL1_1 Se hubo un hit  buscando la direccion 0101 2020/05/07 09:34:05.253
+En CacheL1_1 Se hubo un hit  buscando la direccion 1010 2020/05/07 09:35:13.959
+En CacheL1_1 Se hubo un hit  buscando la direccion 0110 2020/05/07 09:35:35.477

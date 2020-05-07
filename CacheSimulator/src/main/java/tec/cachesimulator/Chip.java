@@ -24,24 +24,25 @@ public class Chip {
     public Nucleo nucleo0;
     public Nucleo nucleo1;
 
-    public Chip(String id_Chip,Clock clock) {
+    public Chip(String id_Chip,Clock clock,LogManager logmanager) {
       this.id_Chip = id_Chip;
       this.clock = clock;
+      this.log = logmanager;
        
       //Se  instancian objetos
-      LogManager Log_init;
-       Log_init = new LogManager();
-      this.log = Log_init;
+     
       
-      Cache CacheL1_1_init = new Cache(2,"CacheL1_P0_0");
+    
+      
+      Cache CacheL1_1_init = new Cache(2,"CacheL1_1");
       this.cacheL1_1 = CacheL1_1_init;
       
-      Cache CacheL1_2_init = new Cache(2,"CacheL1_P1_0");
+      Cache CacheL1_2_init = new Cache(2,"CacheL1_2");
       this.cacheL1_2 = CacheL1_2_init;
       
    
       
-      Cache CacheL2_init = new Cache(4,"CacheL2_0");
+      Cache CacheL2_init = new Cache(4,"CacheL2");
       this.cacheL2 = CacheL2_init;
       
      
