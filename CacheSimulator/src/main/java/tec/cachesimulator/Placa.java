@@ -49,21 +49,23 @@ public class Placa {
       this.memprincipal = MemPrincipal_init;
       
       
+        //Se inicializa 
+        //Se instancian los chips
+    
+    Chip chip0_init = new Chip("Chip 0",this.clock,this.log,this.directorio,this.memstatus);
+    this.chip0 = chip0_init;
+    
+    Chip chip1_init = new Chip("Chip 1",this.clock,this.log,this.directorio,this.memstatus);
+    this.chip1 = chip1_init;
+    
+      
       
       //Se incializa el Directorio
       
       Direcctorio Directorio_init;
-      Directorio_init = new Direcctorio(this.chip0.cacheL2,this.chip1.cacheL2,this.memprincipal,this.log);
+      Directorio_init = new Direcctorio(this.chip0.cacheL2,this.chip1.cacheL2,this.memprincipal,this.log, this.memstatus);
       this.directorio = Directorio_init;
       
-      //Se inicializa 
-        //Se instancian los chips
-    
-    Chip chip0_init = new Chip("Chip 0",this.clock,this.log,this.directorio);
-    this.chip0 = chip0_init;
-    
-    Chip chip1_init = new Chip("Chip 1",this.clock,this.log,this.directorio);
-    this.chip1 = chip1_init;
     
     
     //Se agrega observador
@@ -76,9 +78,12 @@ public class Placa {
     
     
     
-      public void Start() throws InterruptedException{
-        this.chip0.Start();
-        this.chip1.Start();
+      public  void Start(){
+        chip0.run();
+        chip1.run();
+        
+         
+        
         }
     
       

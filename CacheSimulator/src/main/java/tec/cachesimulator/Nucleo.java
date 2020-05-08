@@ -19,6 +19,7 @@ public class Nucleo extends Thread implements Constantes{
     List<Instruccion> Cola_Instrucciones ;
     public Cache cache;
     public Clock clk;
+    public String generated;
    
     //Constructor
     
@@ -28,23 +29,36 @@ public class Nucleo extends Thread implements Constantes{
     this.Cola_Instrucciones = new ArrayList<>();
     this.cache = cacheL1;
     this.clk = clk;
+    this.generated = "0";
+    
   }
     
   
   /*
   Cuando se corra el hilo se estara creando instrucciones infinitas con un sleep
   */
+
+    /**
+     *
+     */
+
    
-  @Override
-	public void run() {
-		while (true) { 
+  
+    @Override
+	public synchronized  void run() {
+		try{while (true) { 
                         if(this.clk.isActive() && this.cache.Locked==false){
                             this.generarInstruccion();
                             this.clk.WaitUntilNotActive();
                         }else{
+                           
                             this.clk.WaitUntilActive();
+                          
                         }     
-		}	
+		}}
+                catch(Exception e){
+                    System.out.println("Thread  interrupted.");
+                }
 	}
   
   

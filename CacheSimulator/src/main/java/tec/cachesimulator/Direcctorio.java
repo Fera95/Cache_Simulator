@@ -13,20 +13,21 @@ package tec.cachesimulator;
  * 
  */
 public class Direcctorio extends Observador {
-     public Cache cacheL2_1;
+    public Cache cacheL2_1;
     public Cache cacheL2_2;
     public Memoria memprincipal;
     public LogManager Log;
-
+    public MemStatus memstatus;
 
 
  //Creado para debugear
     public int Ciclo;
-    public Direcctorio(Cache cacheL2_1,Cache cacheL2_2,  Memoria memprincipal,LogManager Log){
+    public Direcctorio(Cache cacheL2_1,Cache cacheL2_2,  Memoria memprincipal,LogManager Log,MemStatus memstatus){
         this.cacheL2_1 = cacheL2_1;
         this.cacheL2_2 = cacheL2_2;
         this.memprincipal = memprincipal;
         this.Log = Log;  
+        this.memstatus = memstatus;
         this.Ciclo = 1;
     }  
     @Override

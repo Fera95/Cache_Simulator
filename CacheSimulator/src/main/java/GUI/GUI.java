@@ -94,6 +94,19 @@ public class GUI extends JPanel
          
          clk.start();
          placa.Start();
+         
+         try {
+         
+     
+         placa.chip0.nucleo0.join();
+         placa.chip0.nucleo1.join();
+         placa.chip1.nucleo0.join();
+         placa.chip1.nucleo1.join();
+         clk.join(2000);
+         
+      } catch ( InterruptedException e) {
+         System.out.println("Interrupted");
+      }
      
      }
 }

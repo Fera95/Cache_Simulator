@@ -5,6 +5,8 @@
  */
 package tec.cachesimulator;
 
+import static org.graalvm.compiler.asm.amd64.AMD64BaseAssembler.OperandSize.PD;
+
 /**
  *
  * @author esteban
@@ -17,6 +19,7 @@ public class Chip {
     public Clock clock;
     public String id_Chip;
     public LogManager log;
+    public MemStatus memstatus;
     public Cache cacheL1_1;
     public Cache cacheL1_2;
     public Cache cacheL2;
@@ -24,12 +27,15 @@ public class Chip {
     public Direcctorio directorio;
     public Nucleo nucleo0;
     public Nucleo nucleo1;
-
-    public Chip(String id_Chip,Clock clock,LogManager logmanager,Direcctorio directorio) {
+   
+    
+    public Chip(String id_Chip,Clock clock,LogManager logmanager,Direcctorio directorio,MemStatus memstatus) {
       this.id_Chip = id_Chip;
       this.clock = clock;
       this.log = logmanager;
       this.directorio = directorio;
+      this.memstatus = memstatus;
+      
        
       //Se  instancian objetos
      
@@ -49,15 +55,15 @@ public class Chip {
       
      
       
-      Monitor monitor_init = new Monitor(this.cacheL1_1,this.cacheL1_2,this.cacheL2,this.log);
+      Monitor monitor_init = new Monitor(this.cacheL1_1,this.cacheL1_2,this.cacheL2,this.log,this.memstatus);
       this.monitor = monitor_init;
       
       Nucleo nucleo0_init;
-      nucleo0_init = new Nucleo("P0",this.id_Chip,this.cacheL1_1,this.clock);
+      nucleo0_init = new Nucleo("Procesador 0",this.id_Chip,this.cacheL1_1,this.clock);
       this.nucleo0= nucleo0_init;
       
       Nucleo nucleo1_init;
-      nucleo1_init = new Nucleo("P1",this.id_Chip,this.cacheL1_2,this.clock);
+      nucleo1_init = new Nucleo("Procesador 1",this.id_Chip,this.cacheL1_2,this.clock);
       this.nucleo1= nucleo1_init;
       
       //Se agrega observador
@@ -72,17 +78,14 @@ public class Chip {
      
     }
     
-    public void Start() throws InterruptedException{
-        this.nucleo0.start();
-        this.nucleo1.start();
-        
-      
-        
-    }
-    
-    
-            
-            
-            
+   
 
+          
+    
+     public void run() {
+      
+       nucleo0.start();
+       nucleo1.start();
+      
+    }
 }

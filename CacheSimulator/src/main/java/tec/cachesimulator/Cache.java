@@ -20,6 +20,7 @@ public class Cache extends Memoria{
     private final ArrayList<Observador> observadores = new ArrayList<>();
             
     //metodo para agregar un observador
+    @Override
     public void agregarObserver(Observador observador){
         observadores.add(observador);
     }

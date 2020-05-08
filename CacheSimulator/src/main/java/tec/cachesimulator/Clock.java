@@ -32,7 +32,7 @@ public class Clock extends Thread {
     // funcion que correra el hilo 
      
      @Override
-	public void run() {
+	public  void run() {
 
             while(true){
                 //si el clock está activo se llama a LogManager
@@ -51,7 +51,7 @@ public class Clock extends Thread {
      //Funcion para dormir hilo 
     private void esperarXsegundos(int segundos) {
 		try {
-			Thread.sleep(segundos * 1000);
+			Thread.sleep(segundos * 1500);
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}

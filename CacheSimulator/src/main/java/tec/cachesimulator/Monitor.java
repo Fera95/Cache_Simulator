@@ -17,14 +17,16 @@ public class Monitor extends Observador{
     public Cache cacheL1_2;
     public Cache cacheL2;
     public LogManager Log;
+    public MemStatus memstatus;
     
     //Creado para debugear
     public int Ciclo;
-    public Monitor(Cache cacheL1_1,Cache cacheL1_2,  Cache cacheL2,LogManager Log){
+    public Monitor(Cache cacheL1_1,Cache cacheL1_2,  Cache cacheL2,LogManager Log,MemStatus memstatus){
         this.cacheL1_1 = cacheL1_1;
         this.cacheL1_2 = cacheL1_2;
         this.cacheL2 = cacheL2;
         this.Log = Log;  
+        this.memstatus = memstatus;
         this.Ciclo = 1;
     }  
     @Override
