@@ -50,23 +50,25 @@ public class Placa {
       
       
       
-      
-      
-      //Se inicializa 
-        //Se instancian los chips
-    
-    Chip chip0_init = new Chip("0",this.clock,this.log);
-    this.chip0 = chip0_init;
-    
-    Chip chip1_init = new Chip("1",this.clock,this.log);
-    this.chip1 = chip1_init;
-    
-    
-    //Se incializa el Directorio
+      //Se incializa el Directorio
       
       Direcctorio Directorio_init;
       Directorio_init = new Direcctorio(this.chip0.cacheL2,this.chip1.cacheL2,this.memprincipal,this.log);
       this.directorio = Directorio_init;
+      
+      //Se inicializa 
+        //Se instancian los chips
+    
+    Chip chip0_init = new Chip("Chip 0",this.clock,this.log,this.directorio);
+    this.chip0 = chip0_init;
+    
+    Chip chip1_init = new Chip("Chip 1",this.clock,this.log,this.directorio);
+    this.chip1 = chip1_init;
+    
+    
+    //Se agrega observador
+    
+   this.memprincipal.agregarObserver(this.directorio);
       
     }
       

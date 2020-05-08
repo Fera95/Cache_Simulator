@@ -18,6 +18,12 @@ import java.util.List;
  */
 public class Memoria implements Constantes{
     
+   
+    
+    //se crea lista de observadores
+    private final ArrayList<Observador> observadores = new ArrayList<>();
+    
+
     //Atributos 
     public  int Tamaño_memoria;
     public List<Bloque> Bloques_memoria ;
@@ -44,6 +50,16 @@ public class Memoria implements Constantes{
         this.Locked = false;
     }
 
+    
+    
+     
+            
+    //metodo para agregar un observador
+    public void agregarObserver(Observador observador){
+       observadores.add(observador);
+    }
+    
+    
     public boolean isLocked() {
         return Locked;
     }
@@ -60,6 +76,9 @@ public class Memoria implements Constantes{
         this.Instruccion_Actual = Instruccion_Actual;
         //Se bloquea memoria
         this.setLocked(true);
+          observadores.forEach((observador) -> {
+            observador.actualizar(this.Instruccion_Actual);
+        });
     }
     public void UnlockMemory(){
     

@@ -21,13 +21,15 @@ public class Chip {
     public Cache cacheL1_2;
     public Cache cacheL2;
     public Monitor monitor;
+    public Direcctorio directorio;
     public Nucleo nucleo0;
     public Nucleo nucleo1;
 
-    public Chip(String id_Chip,Clock clock,LogManager logmanager) {
+    public Chip(String id_Chip,Clock clock,LogManager logmanager,Direcctorio directorio) {
       this.id_Chip = id_Chip;
       this.clock = clock;
       this.log = logmanager;
+      this.directorio = directorio;
        
       //Se  instancian objetos
      
@@ -62,6 +64,7 @@ public class Chip {
       
       this.cacheL1_1.agregarObserver(this.monitor);
       this.cacheL1_2.agregarObserver(this.monitor);
+      this.cacheL2.agregarObserver(this.directorio);
       
     
       
