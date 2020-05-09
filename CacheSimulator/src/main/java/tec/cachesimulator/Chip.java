@@ -5,6 +5,8 @@
  */
 package tec.cachesimulator;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.graalvm.compiler.asm.amd64.AMD64BaseAssembler.OperandSize.PD;
 
 /**
@@ -84,8 +86,15 @@ public class Chip {
     
      public void run() {
       
-       nucleo0.start();
-       nucleo1.start();
+      
+        try {
+             nucleo0.start();
+            Thread.sleep(1000);
+            nucleo1.start();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Chip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
       
     }
 }
