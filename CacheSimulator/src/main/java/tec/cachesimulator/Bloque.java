@@ -5,6 +5,9 @@
  */
 package tec.cachesimulator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author esteban
@@ -15,12 +18,17 @@ public class Bloque {
     String Direccion;
     String Estado;
     String Dato;
+    String StringDueños;
+    public List<String> Dueños;
     boolean isShared;
 
     public Bloque(String Direccion, String Dato) {
         this.Direccion = Direccion;
         this.Estado = "I";
         this.Dato = Dato;
+        this.StringDueños = "";
+       ArrayList<String> ListInit = new ArrayList<>(); 
+        this.Dueños = ListInit;
     }
 
     public String getDireccion() {
@@ -54,9 +62,25 @@ public class Bloque {
     public void setIsShared(boolean isShared) {
         this.isShared = isShared;
     }
-    
+
+
          
-    
+    //Metodo que devuelve el estado de la memoria
+    public void CrearStringDueños(){
+        this.StringDueños = "";
+        for (int i = 0; i < this.Dueños.size(); i++) {
+            this.StringDueños = this.StringDueños + this.Dueños.get(i);
+            
+        }
+    }
+
+    public String getStringDueños() {
+        return StringDueños;
+    }
+
+    public void setStringDueños(String StringDueños) {
+        this.StringDueños = StringDueños;
+    }
     
     
 }

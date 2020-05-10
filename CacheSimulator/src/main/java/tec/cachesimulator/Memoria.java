@@ -8,6 +8,7 @@ package tec.cachesimulator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,7 +36,12 @@ public class Memoria implements Constantes{
     //atributo para saber que instruccion se le está asignando a la memoria
     public  Instruccion Instruccion_Actual;
     
+    //atributo con todos los datos de la memoria en formato para ser enviados a
+    // interfaz gráfica.
     
+     public List<String[]> DataGui;
+     public String Data;
+     
 
     public Memoria(int Tamaño_memoria,String Nombre) {
         this.Tamaño_memoria = Tamaño_memoria;
@@ -43,11 +49,12 @@ public class Memoria implements Constantes{
         for (int i = 0; i < Tamaño_memoria; i++) {
             String dir;
             dir = Memoria.ListaDirecciones.get(i);
-            Bloque bloque = new Bloque(dir, "0");
+            Bloque bloque = new Bloque(dir, "0000");
             this.Bloques_memoria.add(bloque);
         }
         this.Nombre = Nombre;
         this.Locked = false;
+        this.Data = "";
     }
 
     
@@ -215,4 +222,39 @@ public class Memoria implements Constantes{
                     this.Bloques_memoria.get(i).Dato);
         }
     }
+    
+     //Metodo actualiza el estado de la memoria debe ser utilizado por Monitor y Director
+    public void SetearDatos(){
+        List<String[]> Datos;
+        Datos = new ArrayList<>();
+ 
+        for(int i=0; i< this.Tamaño_memoria;i++){
+            
+            Bloque bloqueactual = this.Bloques_memoria.get(i);
+            bloqueactual.CrearStringDueños();
+            String[] Dato = {bloqueactual.Direccion,bloqueactual.Estado, bloqueactual.StringDueños,bloqueactual.Dato};
+            Datos.add(Dato);
+            
+        }
+        this.DataGui = Datos;
+    }
+
+    public List<String[]> getDataGui() {
+        return DataGui;
+    }
+
+ 
+     //Metodo para obtener los datos de la memoria en forma de string
+    // para ser pasados como parametro para el GUI
+     public String getData(){
+      
+          for (int i = 0; i < this.getDataGui().size(); i++) {
+   
+             this.Data = this.Data + Arrays.toString(this.getDataGui().get(i));
+         }
+          return Data;
+     }
+    
+    
+    
 }

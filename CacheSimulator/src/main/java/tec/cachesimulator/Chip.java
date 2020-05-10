@@ -86,9 +86,10 @@ public class Chip {
     
      public void run() {
       
-      
+       
         try {
              nucleo0.start();
+             
             Thread.sleep(1000);
             nucleo1.start();
         } catch (InterruptedException ex) {

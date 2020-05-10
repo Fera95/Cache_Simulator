@@ -10,5 +10,11 @@ package tec.cachesimulator;
  * @author Esteban
  */
 public class MemStatus {
+    public String[][] DataMemPrincipal;
     
+    
+    
+    
+   
+
 }

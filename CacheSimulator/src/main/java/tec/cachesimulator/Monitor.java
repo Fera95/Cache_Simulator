@@ -36,11 +36,20 @@ public class Monitor extends Observador{
         instruccion.print_info();
       if("WRITE".equals(instruccion.Operacion) && "P0".equals(instruccion.Numero_nucleo)){
          this.cacheL1_1.checkMiss(instruccion.Direccion_memoria);
+      
          this.Log.setLastLog(this.cacheL1_1.devolverLog());
          this.Log.WriteLastLog();
       }
       
-    
+      
+      //Se testea GUI modificando valor de memcache para gui
+      
+      
+      
+      
+      this.cacheL2.SetearDatos();
+      this.cacheL1_1.SetearDatos();
+      this.cacheL1_2.SetearDatos();
       // Se liberan las memorias 
       this.cacheL1_1.UnlockMemory();
       this.cacheL1_2.UnlockMemory();

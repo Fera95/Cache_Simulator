@@ -96,6 +96,7 @@ public class Instruccion {
         if(this !=null){
             System.out.println(this.Numero_nucleo + ","+ this.Numero_chip + ":"+
                 this.Operacion + " "+ this.Direccion_memoria + this.separador + this.Dato);
+            
         }
             
         
