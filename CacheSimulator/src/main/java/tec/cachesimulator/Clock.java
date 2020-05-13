@@ -51,7 +51,7 @@ public class Clock extends Thread {
      //Funcion para dormir hilo 
     private void esperarXsegundos(int segundos) {
 		try {
-			Thread.sleep(segundos * 3000);
+			Thread.sleep(segundos * 2000);
 		} catch (InterruptedException ex) {
 			Thread.currentThread().interrupt();
 		}

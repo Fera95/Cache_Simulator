@@ -5,6 +5,9 @@
  */
 package tec.cachesimulator;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author esteban
@@ -31,15 +34,25 @@ public class Monitor extends Observador{
     }  
     @Override
     public void actualizar(Instruccion instruccion){
-       
+     
         //Prueba Se verifica si hay un escritura en P0 con un checkmiss
         instruccion.print_info();
-      if("WRITE".equals(instruccion.Operacion) && "P0".equals(instruccion.Numero_nucleo)){
+      if("WRITE".equals(instruccion.Operacion)){
          this.cacheL1_1.checkMiss(instruccion.Direccion_memoria);
       
          this.Log.setLastLog(this.cacheL1_1.devolverLog());
          this.Log.WriteLastLog();
+         
       }
+          
+        try {
+            this.cacheL1_1.Bloques_memoria.get(0).setDato("AAAA");
+            Thread.sleep(1000);
+            this.cacheL1_1.Bloques_memoria.get(0).setDato("BBBB");
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
       
       
       //Se testea GUI modificando valor de memcache para gui

@@ -21,6 +21,8 @@ public class Chip {
     public Clock clock;
     public String id_Chip;
     public LogManager log;
+   
+    //revisar no implementado aun
     public MemStatus memstatus;
     public Cache cacheL1_1;
     public Cache cacheL1_2;
@@ -41,8 +43,6 @@ public class Chip {
        
       //Se  instancian objetos
      
-      
-    
       
       Cache CacheL1_1_init = new Cache(2,"CacheL1_1");
       this.cacheL1_1 = CacheL1_1_init;

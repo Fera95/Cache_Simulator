@@ -40,7 +40,6 @@ public class Memoria implements Constantes{
     // interfaz gráfica.
     
      public List<String[]> DataGui;
-     public String Data;
      
 
     public Memoria(int Tamaño_memoria,String Nombre) {
@@ -54,7 +53,7 @@ public class Memoria implements Constantes{
         }
         this.Nombre = Nombre;
         this.Locked = false;
-        this.Data = "";
+       
     }
 
     
@@ -246,14 +245,14 @@ public class Memoria implements Constantes{
  
      //Metodo para obtener los datos de la memoria en forma de string
     // para ser pasados como parametro para el GUI
-     public String getData(){
+    /* public String getData(){
       
           for (int i = 0; i < this.getDataGui().size(); i++) {
    
              this.Data = this.Data + Arrays.toString(this.getDataGui().get(i));
          }
           return Data;
-     }
+     }*/
     
     
     

@@ -8,6 +8,7 @@ package tec.cachesimulator;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.*;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class LogManager {
     public String LastLog;
+    
 
     public LogManager() {
     }

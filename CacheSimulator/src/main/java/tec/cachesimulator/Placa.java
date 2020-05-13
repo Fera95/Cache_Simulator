@@ -18,6 +18,8 @@ public class Placa {
       public LogManager log; 
       public Direcctorio directorio;
       public Memoria memprincipal;
+      
+      //no se implementa yet(revisar)
       public MemStatus memstatus;
       
 
@@ -79,8 +81,8 @@ public class Placa {
     
     
       public  void Start(){
-          Bloque nuevo = new Bloque("0000","AAAA");
-        this.memprincipal.mostrarMemoria();
+   
+     
         chip0.run();
         chip1.run();
           
