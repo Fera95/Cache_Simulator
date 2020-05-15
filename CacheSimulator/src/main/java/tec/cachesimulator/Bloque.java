@@ -19,16 +19,26 @@ public class Bloque {
     String Estado;
     String Dato;
     String StringDueños;
+    String DireccionGuarda;
     public List<String> Dueños;
     boolean isShared;
 
     public Bloque(String Direccion, String Dato) {
         this.Direccion = Direccion;
+        this.DireccionGuarda = "";
         this.Estado = "I";
         this.Dato = Dato;
         this.StringDueños = "";
        ArrayList<String> ListInit = new ArrayList<>(); 
         this.Dueños = ListInit;
+    }
+
+    public String getDireccionGuarda() {
+        return DireccionGuarda;
+    }
+
+    public void setDireccionGuarda(String DireccionGuarda) {
+        this.DireccionGuarda = DireccionGuarda;
     }
 
     public String getDireccion() {
