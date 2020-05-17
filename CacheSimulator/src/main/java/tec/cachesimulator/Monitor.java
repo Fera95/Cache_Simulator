@@ -47,8 +47,10 @@ public class Monitor extends Observador{
           
         try {
             this.cacheL1_1.Bloques_memoria.get(0).setDato("AAAA");
+            this.cacheL1_2.Bloques_memoria.get(1).setDato("AAAA");
             Thread.sleep(1000);
             this.cacheL1_1.Bloques_memoria.get(0).setDato("BBBB");
+             this.cacheL1_2.Bloques_memoria.get(1).setDato("BBBB");
         } catch (InterruptedException ex) {
             Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
         }
