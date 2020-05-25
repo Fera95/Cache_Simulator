@@ -14,3 +14,5 @@ En CacheL1_1 Se hubo un hit  buscando la direccion 0011 2020/05/20 19:26:59.212
 En CacheL1_1 Se hubo un hit  buscando la direccion 0101 2020/05/20 19:27:00.234
 En CacheL1_1 Se hubo un hit  buscando la direccion 1011 2020/05/20 19:27:01.211
 En CacheL1_1 Se hubo un hit  buscando la direccion 0101 2020/05/20 19:27:20.214
+null
+null

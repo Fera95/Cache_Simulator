@@ -53,15 +53,15 @@ public class Monitor extends Observador{
         //Se ve el tipo de intrucción
       instruccion.print_info();
       if("WRITE".equals(instruccion.Operacion)){
-         this.local_write(this.cachelocal);
-         this.snoop_write(this.cachesnoop);
+         this.local_write(this.cachelocal,instruccion);
+         this.snoop_write(this.cachesnoop,instruccion);
    
       }
       
       
       if("READ".equals(instruccion.Operacion)){
-           this.local_read(this.cachelocal);
-           this.snoop_read(this.cachesnoop);
+           this.local_read(this.cachelocal,instruccion);
+           this.snoop_read(this.cachesnoop,instruccion);
    
       }
       

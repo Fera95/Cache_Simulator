@@ -31,7 +31,7 @@ public class Direcctorio extends Observador {
         this.Ciclo = 1;
     }  
     @Override
-    public void actualizar(Instruccion instruccion){
+    public void actualizar(Instruccion instruccion,String Nombre){
        
         //Prueba Se verifica si hay un escritura en P0 con un checkmiss Veo instruccion escribo , modifico , leo , memprincipal
         

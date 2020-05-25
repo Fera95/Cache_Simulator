@@ -31,7 +31,7 @@ public class Cache extends Memoria{
         this.Instruccion_Actual = Instruccion_Actual;
         this.setLocked(true);
         observadores.forEach((observador) -> {
-            observador.actualizar(this.Instruccion_Actual);
+            observador.actualizar(this.Instruccion_Actual,this.Nombre);
         });
     }
     

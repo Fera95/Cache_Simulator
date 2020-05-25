@@ -189,7 +189,7 @@ public class Memoria implements Constantes{
     public String checkMiss(String Direccion){
         String result="MISS";
         for(int i=0; i< this.Tamaño_memoria;i++){
-            String Dir = this.Bloques_memoria.get(i).Direccion;
+            String Dir = this.Bloques_memoria.get(i).DireccionGuarda;
              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	     LocalDateTime now = LocalDateTime.now();
 	     String timeStamp = dtf.format(now);
