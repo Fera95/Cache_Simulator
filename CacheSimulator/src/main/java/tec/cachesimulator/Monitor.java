@@ -21,47 +21,63 @@ public class Monitor extends Observador{
     public Cache cacheL2;
     public LogManager Log;
     public MemStatus memstatus;
+    public Cache cachelocal;
+    public Cache cachesnoop;
     
-    //Creado para debugear
-    public int Ciclo;
+  
     public Monitor(Cache cacheL1_1,Cache cacheL1_2,  Cache cacheL2,LogManager Log,MemStatus memstatus){
         this.cacheL1_1 = cacheL1_1;
         this.cacheL1_2 = cacheL1_2;
         this.cacheL2 = cacheL2;
         this.Log = Log;  
         this.memstatus = memstatus;
-        this.Ciclo = 1;
+     
     }  
     @Override
-    public void actualizar(Instruccion instruccion){
+    public void actualizar(Instruccion instruccion,String Nombre){
      
-        //Prueba Se verifica si hay un escritura en P0 con un checkmiss
-        instruccion.print_info();
-      if("WRITE".equals(instruccion.Operacion)){
-         this.cacheL1_1.checkMiss(instruccion.Direccion_memoria);
-      
-         this.Log.setLastLog(this.cacheL1_1.devolverLog());
-         this.Log.WriteLastLog();
-         
-      }
-          
-        try {
-            this.cacheL1_1.Bloques_memoria.get(0).setDato("AAAA");
-            this.cacheL1_2.Bloques_memoria.get(1).setDato("AAAA");
-            Thread.sleep(1000);
-            this.cacheL1_1.Bloques_memoria.get(0).setDato("BBBB");
-             this.cacheL1_2.Bloques_memoria.get(1).setDato("BBBB");
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Monitor.class.getName()).log(Level.SEVERE, null, ex);
+        
+        //Se setea quien sera el local y quien sera el snoop(fisgon)
+        
+        if("CacheL1_1".equals(Nombre)){
+            this.cachelocal= this.cacheL1_1;
+            this.cachesnoop= this.cacheL1_2;
         }
+         if("CacheL1_2".equals(Nombre)){
+            this.cachelocal= this.cacheL1_2;
+            this.cachesnoop= this.cacheL1_1;
+        }
+     
+        
+         
+        //Se ve el tipo de intrucción
+      instruccion.print_info();
+      if("WRITE".equals(instruccion.Operacion)){
+         this.local_write(this.cachelocal);
+         this.snoop_write(this.cachesnoop);
+   
+      }
+      
+      
+      if("READ".equals(instruccion.Operacion)){
+           this.local_read(this.cachelocal);
+           this.snoop_read(this.cachesnoop);
+   
+      }
+      
+      if("CALC".equals(instruccion.Operacion)){
+         
+   
+      }
+      
           
       
-      
-      //Se testea GUI modificando valor de memcache para gui
-      
+
       
       
       
+      
+      //Se setea para el gui
       this.cacheL2.SetearDatos();
       this.cacheL1_1.SetearDatos();
       this.cacheL1_2.SetearDatos();
@@ -69,4 +85,40 @@ public class Monitor extends Observador{
       this.cacheL1_1.UnlockMemory();
       this.cacheL1_2.UnlockMemory();
     }
+    
+    //Funciones para manipular las caches
+    
+    public void snoop_read(Cache cacheinput,Instruccion instruccion){
+        
+        
+        
+        
+        
+        
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+    }
+    
+    public void snoop_write(Cache cacheinput,Instruccion instruccion){
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+    }
+     
+    public void local_read(Cache cacheinput,Instruccion instruccion){
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+    }
+      
+    public void local_write(Cache cacheinput,Instruccion instruccion){
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+    }
+    
+    public void write_back(){
+        
+    }
+    
+    
+    
+    
 }

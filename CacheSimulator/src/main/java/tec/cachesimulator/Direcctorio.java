@@ -33,7 +33,11 @@ public class Direcctorio extends Observador {
     @Override
     public void actualizar(Instruccion instruccion){
        
-        //Prueba Se verifica si hay un escritura en P0 con un checkmiss
+        //Prueba Se verifica si hay un escritura en P0 con un checkmiss Veo instruccion escribo , modifico , leo , memprincipal
+        
+        
+        //Nucleo -> Instruccion -> CacheL1 ese nucleo -> Notifica observado Monitor(MSI) -> Cache L2 -> Notifica Observer Directorio (Protocolo) -> Memprincipal -> Se liberan mems
+        
         instruccion.print_info();
       if("WRITE".equals(instruccion.Operacion) && "P0".equals(instruccion.Numero_nucleo)){
          this.cacheL2_1.checkMiss(instruccion.Direccion_memoria);

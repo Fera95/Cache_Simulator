@@ -15,6 +15,6 @@ public abstract class Observador {
     protected Cache cacheL1_2;
     protected Cache cacheL2;
     
-    public abstract void actualizar(Instruccion instruccion);
+    public abstract void actualizar(Instruccion instruccion,String Nombre);
     
 }

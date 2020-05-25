@@ -83,7 +83,7 @@ public class Memoria implements Constantes{
         //Se bloquea memoria
         this.setLocked(true);
           observadores.forEach((observador) -> {
-            observador.actualizar(this.Instruccion_Actual);
+            observador.actualizar(this.Instruccion_Actual,this.Nombre);
         });
     }
     public void UnlockMemory(){
