@@ -22,23 +22,22 @@ public class Chip {
     public String id_Chip;
     public LogManager log;
    
-    //revisar no implementado aun
-    public MemStatus memstatus;
+ 
     public Cache cacheL1_1;
     public Cache cacheL1_2;
     public Cache cacheL2;
-    public Monitor monitor;
-    public Direcctorio directorio;
+    public MemoriesManager memmanager;
+ 
     public Nucleo nucleo0;
     public Nucleo nucleo1;
    
     
-    public Chip(String id_Chip,Clock clock,LogManager logmanager,Direcctorio directorio,MemStatus memstatus) {
+    public Chip(String id_Chip,Clock clock,LogManager logmanager,MemoriesManager memmanager) {
       this.id_Chip = id_Chip;
       this.clock = clock;
       this.log = logmanager;
-      this.directorio = directorio;
-      this.memstatus = memstatus;
+      this.memmanager = memmanager;
+
       
        
       //Se  instancian objetos
@@ -55,10 +54,7 @@ public class Chip {
       Cache CacheL2_init = new Cache(4,"CacheL2");
       this.cacheL2 = CacheL2_init;
       
-     
-      
-      Monitor monitor_init = new Monitor(this.cacheL1_1,this.cacheL1_2,this.cacheL2,this.log,this.memstatus);
-      this.monitor = monitor_init;
+   
       
       Nucleo nucleo0_init;
       nucleo0_init = new Nucleo("Procesador 0",this.id_Chip,this.cacheL1_1,this.clock);
@@ -68,11 +64,14 @@ public class Chip {
       nucleo1_init = new Nucleo("Procesador 1",this.id_Chip,this.cacheL1_2,this.clock);
       this.nucleo1= nucleo1_init;
       
+
+      
+      
       //Se agrega observador
       
-      this.cacheL1_1.agregarObserver(this.monitor);
-      this.cacheL1_2.agregarObserver(this.monitor);
-      this.cacheL2.agregarObserver(this.directorio);
+      this.cacheL1_1.agregarObserver(this.memmanager);
+      this.cacheL1_2.agregarObserver(this.memmanager);
+ 
       
     
       

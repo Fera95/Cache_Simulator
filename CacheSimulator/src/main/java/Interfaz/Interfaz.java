@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -719,7 +721,8 @@ private JTable getMemoriaPrincipal() {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException  {
+        ExecutorService executor = Executors.newSingleThreadExecutor();
         Clock clk =new Clock();
         Placa placa = new Placa(clk);
         clk.start();

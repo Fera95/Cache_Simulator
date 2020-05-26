@@ -56,8 +56,9 @@ public class Nucleo extends Thread implements Constantes{
                           
                         }     
 		}}
-                catch(Exception e){
-                    System.out.println("Thread  interrupted.");
+                 catch(Exception e){
+                    System.out.println(e);
+                  
                 }
 	}
   

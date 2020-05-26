@@ -165,8 +165,13 @@ public class Memoria implements Constantes{
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
-        this.Log = "En " +this.Nombre+ " se modifico el estado de " + this.Bloques_memoria.get(Index).Direccion 
-        + "de "+ this.Bloques_memoria.get(Index).Estado+ " a " + Estado + " " + timeStamp;
+        
+        
+        this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
+                + "En " +this.Nombre+ " se modifico el estado de " + this.Bloques_memoria.get(Index).Direccion + "de "+ this.Bloques_memoria.get(Index).Estado+ " a " + Estado;
+    
+        
+        
         this.Bloques_memoria.get(Index).setEstado(Estado);
     }
     
@@ -175,8 +180,12 @@ public class Memoria implements Constantes{
          DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
-        this.Log = "En " +this.Nombre+ " se modifico el valor de " + this.Bloques_memoria.get(Index).Direccion 
-        + "de "+ this.Bloques_memoria.get(Index).Dato+ " a " + Dato + " " + timeStamp;
+        
+           this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
+           + "En " +this.Nombre+ " se modifico el valor de " + this.Bloques_memoria.get(Index).Direccion 
+        + "de "+ this.Bloques_memoria.get(Index).Dato+ " a " + Dato;
+           
+       
         this.Bloques_memoria.get(Index).setDato(Dato);
     }
     
@@ -195,10 +204,15 @@ public class Memoria implements Constantes{
 	     String timeStamp = dtf.format(now);
             if("Direccion".equals(Dir)){
                 result = "HIT";
-            
-           this.Log = "En " +this.Nombre+ " Se hubo un miss  buscando la direccion " + Direccion + " " + timeStamp;
+           
+            this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
+            + "En " +this.Nombre+ " Se hubo un miss  buscando la direccion " + Direccion;
+                
+        
             }else{
-             this.Log = "En " +this.Nombre+ " Se hubo un hit  buscando la direccion " + Direccion + " " + timeStamp;
+         
+              this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
+            + "En " +this.Nombre+ " Se hubo un hit  buscando la direccion " + Direccion;
             }       
         }
 
