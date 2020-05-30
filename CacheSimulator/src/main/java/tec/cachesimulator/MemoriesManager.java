@@ -325,6 +325,13 @@ public class MemoriesManager extends Observador{
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
+             if("M".equals(cacheinput.Bloques_memoria.get(cacheinput.LastHIT).Estado)){
+                 //Write-Back
+                 this.cacheL2_used.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
+                 //Se para a I
+                 cacheinput.modificarEstado(cacheinput.LastHIT, "I");
+             }
+             //Se pasa a I
              cacheinput.modificarEstado(cacheinput.LastHIT, "I");
          }
          this.Log.setLastLog(cacheinput.devolverLog());
