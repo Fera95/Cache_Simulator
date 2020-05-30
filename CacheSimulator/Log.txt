@@ -233,3 +233,65 @@
 2020/05/30 10:07:00.470 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
 2020/05/30 10:07:00.472 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
 2020/05/30 10:07:00.472 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:45.956 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:50.533 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:50.533 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:50.533 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:50.533 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:51.539 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:51.539 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:50.533 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:53.566 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:58:53.566 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 13:59:12.555 , Chip 0 ,Procesador 0 ,  Detalle: En CacheL1_1 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 13:59:13.541 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+En CacheL1_1 el nucleo: Procesador 0 del chip: Chip 1 escribio: 4A3B con la dirección 0100 2020/05/30 13:59:12.564
+En CacheL1_1 el nucleo: Procesador 0 del chip: Chip 1 escribio: 4A3B con la dirección 0100 2020/05/30 13:59:12.564
+2020/05/30 13:59:15.065 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 13:59:15.065 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 13:59:15.558 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 13:59:15.558 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 13:59:15.569 , Chip 1 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 1000
+2020/05/30 13:59:27.068 , Chip 1 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+2020/05/30 13:59:27.560 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 13:59:27.572 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:00:45.921 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:00:46.900 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0111
+2020/05/30 14:00:46.901 , Chip 1 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+En CacheL1_2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0110 2020/05/30 14:00:47.900
+2020/05/30 14:00:48.933 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:00:48.933 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+En CacheL1_2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0110 2020/05/30 14:00:47.900
+2020/05/30 14:00:50.401 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:00:50.401 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:03:39.401 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+2020/05/30 14:03:40.376 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 14:03:41.377 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+En CacheL2 el nucleo: Procesador 0 del chip: Chip 1 escribio: 4A3B con la dirección 1010 2020/05/30 14:03:42.379
+2020/05/30 14:03:41.377 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:03:41.377 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:03:43.379 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 14:03:43.379 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 14:03:43.380 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 14:03:43.380 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 14:03:41.377 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:03:44.379 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:03:44.379 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1011
+2020/05/30 14:04:01.407 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 1011
+2020/05/30 14:05:23.940 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+2020/05/30 14:05:24.917 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0100
+2020/05/30 14:05:24.919 , Chip 1 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0111
+En CacheL2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0110 2020/05/30 14:05:27.916
+En CacheL1_2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0110 2020/05/30 14:05:25.916
+2020/05/30 14:05:28.919 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:05:28.919 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 14:05:46.921 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+2020/05/30 14:05:46.921 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+En CacheL2 el nucleo: Procesador 0 del chip: Chip 0 escribio: 4A3B con la dirección 0011 2020/05/30 14:05:47.948
+En CacheL1_2 el nucleo: Procesador 0 del chip: Chip 0 escribio: 4A3B con la dirección 0011 2020/05/30 14:05:45.948
+2020/05/30 14:05:48.948 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 14:05:48.948 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+En CacheL2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0101 2020/05/30 14:05:52.922
+En CacheL1_2 el nucleo: Procesador 1 del chip: Chip 1 escribio: 4A3B con la dirección 0101 2020/05/30 14:05:50.921
+2020/05/30 14:05:53.923 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0101
+2020/05/30 14:05:53.923 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0101

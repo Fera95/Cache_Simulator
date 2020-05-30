@@ -113,7 +113,7 @@ public class Memoria implements Constantes{
         boolean hay_S = false;
         
         Bloque bloque = new Bloque(Direccion_memoria,Dato);
-        bloque.setDato("M");
+        bloque.setEstado("M");
         
         
         
