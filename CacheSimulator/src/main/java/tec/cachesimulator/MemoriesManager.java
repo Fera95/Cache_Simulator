@@ -5,6 +5,8 @@
  */
 package tec.cachesimulator;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -48,31 +50,36 @@ public class MemoriesManager extends Observador{
     @Override
     public void actualizar(Instruccion instruccion,String Nombre){
      
-       //Se chequea cuales seran las caches con las que se trabajaran en monitor
-       
-       
      
+        
+    //Se chequea el tipo de cache por el nombre si es L1 o L2?
+    
+    if("CacheL1_2".equals(Nombre) | "CacheL1_1".equals(Nombre)){
+        
+        //Se chequea cuales seran las caches con las que se trabajaran en monitor
+
+    
        
     if("Chip 0".equals(instruccion.Numero_chip)){
         if("Procesador 0".equals(instruccion.Numero_nucleo)){
             this.cacheL1_local = this.cacheL1_1_p0;
             this.cacheL1_snoop = this.cacheL1_1_p1;
-            System.out.println("1");
+            this.cacheL2_used = this.cacheL2_1;
         }else{
             this.cacheL1_local = this.cacheL1_1_p1;
             this.cacheL1_snoop = this.cacheL1_1_p0;
-             System.out.println("2");
+            this.cacheL2_used = this.cacheL2_1;
         }
     }
     else{
          if("Procesador 0".equals(instruccion.Numero_nucleo)){
             this.cacheL1_local = this.cacheL1_2_p0;
             this.cacheL1_snoop = this.cacheL1_2_p1;
-             System.out.println("3");
+             this.cacheL2_used = this.cacheL2_2;
         }else{
             this.cacheL1_local = this.cacheL1_2_p1;
             this.cacheL1_snoop = this.cacheL1_2_p0;
-             System.out.println("4");
+            this.cacheL2_used = this.cacheL2_2;
         }
     }
      
@@ -81,24 +88,30 @@ public class MemoriesManager extends Observador{
         try {
             Thread.sleep(1000);
               switch (instruccion.Operacion) {
-       case "WRITE":
-       
-       this.local_write(this.cacheL1_local,instruccion);
-       this.snoop_write(this.cacheL1_snoop,instruccion);      
- 
-
-       break;
+                      case "WRITE":
+                                    this.local_write(this.cacheL1_local,instruccion);
+                                    this.snoop_write(this.cacheL1_snoop,instruccion);      
+                                    break;
+                      case "READ":
+                                    this.local_read(this.cacheL1_local,instruccion);
+                                    this.snoop_read(this.cacheL1_snoop,instruccion);      
+                                    break;
+                      case "CALC":
+                                  
+                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+                                     LocalDateTime now = LocalDateTime.now();
+	                             String timeStamp = dtf.format(now);
+                                    String log = timeStamp + " , " + instruccion.Numero_chip + " ," + instruccion.Numero_nucleo + " , " + " Detalle: "
+                                    +" Calculó el dato : " + instruccion.Dato + "que apunta a la dirección de mem " +  instruccion.Direccion_memoria;  
+                                     this.Log.setLastLog(log);
+                                     this.Log.WriteLastLog();
+                                     break;
     }
         } catch (Exception ex) {
             System.out.println(ex);
         }
         
-
-
-    
-      
-      
-      //Se setea para el gui
+              //Se setea para el gui
       
       
       
@@ -122,6 +135,49 @@ public class MemoriesManager extends Observador{
     this.cacheL2_2.UnlockMemory();
     this.memprincipal.UnlockMemory();
        
+        
+        
+    }
+    else{
+
+        
+        
+        
+        
+        
+              //Se setea para el gui
+      
+      
+      
+    this.cacheL1_1_p0.SetearDatos();
+    this.cacheL1_2_p0.SetearDatos();
+    this.cacheL1_1_p1.SetearDatos();
+    this.cacheL1_2_p1.SetearDatos();
+    this.cacheL2_1.SetearDatos();
+    this.cacheL2_2.SetearDatos();
+    this.memprincipal.SetearDatos();
+      
+      
+      
+      // Se liberan las memorias 
+    
+    this.cacheL1_1_p0.UnlockMemory();
+    this.cacheL1_2_p0.UnlockMemory();
+    this.cacheL1_1_p1.UnlockMemory();
+    this.cacheL1_2_p1.UnlockMemory();
+    this.cacheL2_1.UnlockMemory();
+    this.cacheL2_2.UnlockMemory();
+    this.memprincipal.UnlockMemory();
+       
+    }
+
+
+
+
+    
+      
+      
+
       
     }
     
@@ -130,7 +186,7 @@ public class MemoriesManager extends Observador{
     public void snoop_read(Cache cacheinput,Instruccion instruccion){
         //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
          String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
-        System.out.println(chequeo);
+     
          //Se escribe un log 
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -148,7 +204,7 @@ public class MemoriesManager extends Observador{
     public void snoop_write(Cache cacheinput,Instruccion instruccion){
           //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
          String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
-         System.out.println(chequeo);
+         
          //Se escribe un log 
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -166,7 +222,7 @@ public class MemoriesManager extends Observador{
     public void local_read(Cache cacheinput,Instruccion instruccion){
           //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
          String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
-         System.out.println(chequeo);
+     
          //Se escribe un log 
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -176,6 +232,9 @@ public class MemoriesManager extends Observador{
              cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
          }else{
              // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+             System.out.println("Testeo level 2");
+             this.cacheL2_used.setInstruccion_Actual(instruccion);
+             
          }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -184,13 +243,14 @@ public class MemoriesManager extends Observador{
     public void local_write(Cache cacheinput,Instruccion instruccion){
          //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
          String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
-         System.out.println(chequeo);
+        
          //Se escribe un log 
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
+             // Si el dato está 
              cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
          }else{
              // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando

@@ -71,7 +71,7 @@ public class Chip {
       
       this.cacheL1_1.agregarObserver(this.memmanager);
       this.cacheL1_2.agregarObserver(this.memmanager);
- 
+      this.cacheL2.agregarObserver(this.memmanager);
       
     
       

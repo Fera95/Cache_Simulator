@@ -104,33 +104,6 @@ public class Memoria implements Constantes{
     }
      
     
-    //Funcion encargada de procesar una instruccion esta ejecutara la petición
-    // y devolvera un log con lo ocurrido en forma de string debera pasarse a monitor y director
-    
-    
-    public void ejecutarInstruccion(Instruccion instruccion)
-    {
-        //Se capturan los datos pertinentes de la instruccion para trabajarlos
-        
-        String Numero_nucleo = instruccion.getNumero_nucleo();
-        String Numero_chip = instruccion.getNumero_chip();
-        String Operacion  = instruccion.getOperacion();
-        String Direccion_memoria = instruccion.getDireccion_memoria();
-        String Dato = instruccion.getDato();
-
-        //Convirtiendo la direccion de memoria a un número en base 10
-        
-        int index = Integer.parseInt(Direccion_memoria, 2);
-        
-        //Si la opeción que entra a memoria es un write
-        if("WRITE".equals(Operacion)){
-            this.escribirDato(index,Numero_nucleo,Numero_chip,Direccion_memoria,Dato);
-            this.devolverLog();   
-        }else{
-            this.leerDato(index,Numero_nucleo,Numero_chip,Direccion_memoria,Dato);
-            this.devolverLog();   
-        }
-    }
                  
     //Metodo encargado de escribir a memoria 
     
@@ -164,7 +137,7 @@ public class Memoria implements Constantes{
   
     //Metodo que recibe posición de memoria y cambia estado de ese bloque
     public void modificarEstado(int Index,String Estado){
-         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
         
