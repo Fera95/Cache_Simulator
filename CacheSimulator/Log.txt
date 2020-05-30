@@ -146,3 +146,90 @@
 2020/05/30 09:27:48.069 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
 2020/05/30 09:27:48.070 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
 2020/05/30 09:27:48.070 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 09:59:25.944 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 09:59:25.944 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 09:59:26.937 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.937 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.937 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.937 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.938 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.938 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.938 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:26.938 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0100
+2020/05/30 09:59:27.967 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 09:59:27.967 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 09:59:27.968 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 09:59:27.968 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:00:03.401 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:00:03.401 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:00:03.403 , Chip 0 ,Procesador 0 ,  Detalle: En CacheL1_1 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:00:03.403 , Chip 0 ,Procesador 0 ,  Detalle: En CacheL1_1 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:00:04.384 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:04.384 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:04.384 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:04.385 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:04.385 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:05.383 , Chip 1 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+2020/05/30 10:00:37.276 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:37.276 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:00:38.259 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 10:00:38.259 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 10:00:38.259 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 10:00:38.260 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 10:00:38.260 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1010
+2020/05/30 10:00:39.262 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:00:39.262 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:00:39.264 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:00:39.264 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:24.135 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+2020/05/30 10:01:25.118 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:01:25.118 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:01:25.118 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:01:25.118 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:01:25.119 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:01:25.120 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:25.120 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:25.120 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:26.119 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:26.119 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:26.122 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:01:26.122 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:04:41.942 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0101
+2020/05/30 10:04:41.942 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0101
+2020/05/30 10:04:42.927 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:04:42.927 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:04:42.927 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:04:42.928 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:04:42.928 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:04:43.927 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:04:43.927 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:04:43.928 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:04:43.928 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1000
+2020/05/30 10:05:02.946 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:05:02.946 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:05:02.948 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:05:02.948 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0011
+2020/05/30 10:05:35.287 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:05:35.287 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:05:35.291 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:05:35.291 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1100
+2020/05/30 10:05:36.269 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0011
+2020/05/30 10:05:36.270 , Chip 1 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+2020/05/30 10:05:37.269 , Chip 1 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0000
+2020/05/30 10:06:36.485 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0011
+2020/05/30 10:06:37.468 , Chip 0 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0110
+2020/05/30 10:06:37.469 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:06:37.469 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:06:37.471 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:06:37.471 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0110
+2020/05/30 10:06:38.469 , Chip 1 ,Procesador 1 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 1000
+2020/05/30 10:06:58.493 , Chip 0 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0111
+2020/05/30 10:06:59.470 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:06:59.470 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:06:59.471 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:06:59.471 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 0111
+2020/05/30 10:06:59.476 , Chip 1 ,Procesador 0 ,  Detalle:  Calculó el dato :  que apunta a la dirección de mem 0101
+2020/05/30 10:07:00.470 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 10:07:00.470 , Chip 1 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 10:07:00.472 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001
+2020/05/30 10:07:00.472 , Chip 0 ,Procesador 1 ,  Detalle: En CacheL1_2 Se hubo un miss  buscando la direccion guardada 1001

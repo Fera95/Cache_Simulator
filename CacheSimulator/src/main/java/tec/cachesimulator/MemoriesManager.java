@@ -58,7 +58,8 @@ public class MemoriesManager extends Observador{
         
         //Se chequea cuales seran las caches con las que se trabajaran en monitor
 
-    
+        System.out.println("Se entra level 1");
+        System.out.println(instruccion.Dato);
        
     if("Chip 0".equals(instruccion.Numero_chip)){
         if("Procesador 0".equals(instruccion.Numero_nucleo)){
@@ -86,7 +87,7 @@ public class MemoriesManager extends Observador{
     
         //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
               switch (instruccion.Operacion) {
                       case "WRITE":
                                     this.local_write(this.cacheL1_local,instruccion);
@@ -142,8 +143,8 @@ public class MemoriesManager extends Observador{
 
         
         
-        
-        
+        System.out.println("Se entra level2");
+        System.out.println(instruccion.Dato);
         
               //Se setea para el gui
       
@@ -231,10 +232,8 @@ public class MemoriesManager extends Observador{
          if("HIT".equals(chequeo)){
              cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
          }else{
-             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
-             System.out.println("Testeo level 2");
-             this.cacheL2_used.setInstruccion_Actual(instruccion);
-             
+           instruccion.Dato = "New Dato";
+           this.cacheL2_used.setInstruccion_Actual(instruccion);
          }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
