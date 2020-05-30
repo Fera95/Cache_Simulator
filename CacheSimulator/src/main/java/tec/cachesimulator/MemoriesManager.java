@@ -325,9 +325,7 @@ public class MemoriesManager extends Observador{
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
-             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
-         }else{
-             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+             cacheinput.modificarEstado(cacheinput.LastHIT, "I");
          }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -367,12 +365,11 @@ public class MemoriesManager extends Observador{
     // Metodos de nivel 2
     
     public void write_Director(Cache cacheinput,Instruccion instruccion){
-        instruccion.print_info();
-        System.out.println(instruccion.Dato);
+       
         cacheinput.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
-        System.out.println("Write_Director");
+ 
     }
     
     public void read_Director(Cache cacheinput,Instruccion instruccion){
