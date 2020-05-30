@@ -59,7 +59,7 @@ public class MemoriesManager extends Observador{
         //Se chequea cuales seran las caches con las que se trabajaran en monitor
 
         System.out.println("Se entra level 1");
-        System.out.println(instruccion.Dato);
+    
        
     if("Chip 0".equals(instruccion.Numero_chip)){
         if("Procesador 0".equals(instruccion.Numero_nucleo)){
@@ -91,10 +91,12 @@ public class MemoriesManager extends Observador{
               switch (instruccion.Operacion) {
                       case "WRITE":
                                     this.local_write(this.cacheL1_local,instruccion);
+                                    Thread.sleep(500);
                                     this.snoop_write(this.cacheL1_snoop,instruccion);      
                                     break;
                       case "READ":
                                     this.local_read(this.cacheL1_local,instruccion);
+                                    Thread.sleep(500);
                                     this.snoop_read(this.cacheL1_snoop,instruccion);      
                                     break;
                       case "CALC":
@@ -141,12 +143,40 @@ public class MemoriesManager extends Observador{
     }
     else{
 
+        //Aplicar ógica de Directorio
+        
+       
         
         
-        System.out.println("Se entra level2");
-        System.out.println(instruccion.Dato);
+        //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+        try {
+            Thread.sleep(2000);
+              switch (instruccion.Operacion) {
+                      case "WRITE":
+                                    this.local_write(this.cacheL1_local,instruccion);
+                                    Thread.sleep(500);
+                                    this.snoop_write(this.cacheL1_snoop,instruccion);      
+                                    break;
+                      case "READ":
+                                    this.local_read(this.cacheL1_local,instruccion);
+                                    Thread.sleep(500);
+                                    this.snoop_read(this.cacheL1_snoop,instruccion);      
+                                    break;
+            
+    }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
         
-              //Se setea para el gui
+        
+        
+        
+        
+        
+    
+
+
+    //Se setea para el gui
       
       
       
@@ -240,26 +270,24 @@ public class MemoriesManager extends Observador{
     }
       
     public void local_write(Cache cacheinput,Instruccion instruccion){
-         //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
-         String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
-        
-         //Se escribe un log 
-         this.Log.setLastLog(cacheinput.devolverLog());
-         this.Log.WriteLastLog();
          
-         //Si el dato está se lee(se hace un log)
-         if("HIT".equals(chequeo)){
-             // Si el dato está 
-             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
-         }else{
-             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
-         }
+        cacheinput.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
+        this.cacheL2_used.setInstruccion_Actual(instruccion);
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
     }
     
-    public void write_next(Cache cacheinput,Instruccion instruccion,Cache cacheoutput){
-        
+  
+    
+    
+    // Metodos de nivel 2
+    
+    public void write_Director(Cache cacheinput,Instruccion instruccion){
+        System.out.println("Write_Director");
+    }
+    
+    public void read_Director(Cache cacheinput,Instruccion instruccion){
+        System.out.println("Read_Director");
     }
 
     public Cache getCacheL1_1_p0() {

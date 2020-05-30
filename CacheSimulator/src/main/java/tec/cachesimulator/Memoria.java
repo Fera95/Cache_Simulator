@@ -104,40 +104,51 @@ public class Memoria implements Constantes{
     }
      
     
-    //Funcion encargada de procesar una instruccion esta ejecutara la petición
-    // y devolvera un log con lo ocurrido en forma de string debera pasarse a monitor y director
-    
-    
-    public void ejecutarInstruccion(Instruccion instruccion)
-    {
-        //Se capturan los datos pertinentes de la instruccion para trabajarlos
-        
-        String Numero_nucleo = instruccion.getNumero_nucleo();
-        String Numero_chip = instruccion.getNumero_chip();
-        String Operacion  = instruccion.getOperacion();
-        String Direccion_memoria = instruccion.getDireccion_memoria();
-        String Dato = instruccion.getDato();
 
-        //Convirtiendo la direccion de memoria a un número en base 10
-        
-        int index = Integer.parseInt(Direccion_memoria, 2);
-        
-        //Si la opeción que entra a memoria es un write
-        if("WRITE".equals(Operacion)){
-            this.escribirDato(index,Numero_nucleo,Numero_chip,Direccion_memoria,Dato);
-            this.devolverLog();   
-        }else{
-            this.leerDato(index,Numero_nucleo,Numero_chip,Direccion_memoria,Dato);
-            this.devolverLog();   
-        }
-    }
                  
     //Metodo encargado de escribir a memoria 
     
-    public void escribirDato(int Index,String Numero_nucleo,String Numero_chip,String Direccion_memoria,String Dato){
+    public void escribirDato(String Numero_nucleo,String Numero_chip,String Direccion_memoria,String Dato){
+        boolean hay_I = false;
+        boolean hay_S = false;
+        
         Bloque bloque = new Bloque(Direccion_memoria,Dato);
-        this.Bloques_memoria.remove(Index);
-        this.Bloques_memoria.add(Index, bloque);
+        bloque.setDato("M");
+        
+        
+        
+         for(int i=0; i< this.Tamaño_memoria;i++){
+            String estado = this.Bloques_memoria.get(i).getEstado();
+             
+            if("I".equals(estado)){
+                this.Bloques_memoria.remove(i);
+                this.Bloques_memoria.add(i, bloque);
+                hay_I=true;
+                break;
+            }
+          
+         }
+        
+         if(hay_I==false){
+            for(int i=0; i< this.Tamaño_memoria;i++){
+            String estado = this.Bloques_memoria.get(i).getEstado();
+             
+            if("S".equals(estado)){
+                this.Bloques_memoria.remove(i);
+                this.Bloques_memoria.add(i, bloque);
+                hay_S=true;
+                break;
+            }
+          
+            }
+         }
+         
+         if(hay_I == false && hay_S==false){
+             this.Bloques_memoria.remove(0);
+             this.Bloques_memoria.add(0, bloque);
+         }
+        
+        
         
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
@@ -145,7 +156,7 @@ public class Memoria implements Constantes{
         
         
          this.Log = "En " +this.Nombre+ " el nucleo: "+Numero_nucleo+" del chip: "+Numero_chip+" escribio: "
-                 +Dato + " en la dirección "+ Direccion_memoria +" "+ timeStamp;
+                 +Dato + " con la dirección "+ Direccion_memoria +" "+ timeStamp;
 
     }
     
