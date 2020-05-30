@@ -26,8 +26,10 @@ public class MemoriesManager extends Observador{
     
     public LogManager Log;
    
-    public Cache cachelocal;
-    public Cache cachesnoop;
+    public Cache cacheL1_local;
+    public Cache cacheL1_snoop;
+    public Cache cacheL2_used;
+    
     
     
     //Parte de Directorio
@@ -46,28 +48,54 @@ public class MemoriesManager extends Observador{
     @Override
     public void actualizar(Instruccion instruccion,String Nombre){
      
-        instruccion.print_info();
-        
-            // System.out.println("Despues de L2");
-            //Se pasa la instruccion directamente a L2 (tambien para probar locks
-            
-            //this.cacheL2.setInstruccion_Actual(instruccion);
-            
-            
-            //Se setea quien sera el local y quien sera el snoop(fisgon) , usando nombre y procesador
-            
-             
-
-      try {
-            this.cacheL1_1_p0.Bloques_memoria.get(0).setDato("AAAA");
-            this.cacheL1_2_p0.Bloques_memoria.get(1).setDato("AAAA");
+       //Se chequea cuales seran las caches con las que se trabajaran en monitor
+       
+       
+     
+       
+    if("Chip 0".equals(instruccion.Numero_chip)){
+        if("Procesador 0".equals(instruccion.Numero_nucleo)){
+            this.cacheL1_local = this.cacheL1_1_p0;
+            this.cacheL1_snoop = this.cacheL1_1_p1;
+            System.out.println("1");
+        }else{
+            this.cacheL1_local = this.cacheL1_1_p1;
+            this.cacheL1_snoop = this.cacheL1_1_p0;
+             System.out.println("2");
+        }
+    }
+    else{
+         if("Procesador 0".equals(instruccion.Numero_nucleo)){
+            this.cacheL1_local = this.cacheL1_2_p0;
+            this.cacheL1_snoop = this.cacheL1_2_p1;
+             System.out.println("3");
+        }else{
+            this.cacheL1_local = this.cacheL1_2_p1;
+            this.cacheL1_snoop = this.cacheL1_2_p0;
+             System.out.println("4");
+        }
+    }
+     
+    
+        //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+        try {
             Thread.sleep(1000);
-            this.cacheL1_1_p0.Bloques_memoria.get(0).setDato("BBBB");
-             this.cacheL1_2_p0.Bloques_memoria.get(1).setDato("BBBB");
-        } catch (InterruptedException ex) {
+              switch (instruccion.Operacion) {
+       case "WRITE":
+       
+       this.local_write(this.cacheL1_local,instruccion);
+       this.snoop_write(this.cacheL1_snoop,instruccion);      
+ 
+
+       break;
+    }
+        } catch (Exception ex) {
             System.out.println(ex);
         }
-      
+        
+
+
+    
       
       
       //Se setea para el gui
@@ -100,22 +128,73 @@ public class MemoriesManager extends Observador{
     //Funciones para manipular las caches
     
     public void snoop_read(Cache cacheinput,Instruccion instruccion){
-        
+        //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
+         String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
+        System.out.println(chequeo);
+         //Se escribe un log 
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+         
+         //Si el dato está se lee(se hace un log)
+         if("HIT".equals(chequeo)){
+             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+         }else{
+             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+         }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
     }
     
     public void snoop_write(Cache cacheinput,Instruccion instruccion){
+          //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
+         String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
+         System.out.println(chequeo);
+         //Se escribe un log 
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+         
+         //Si el dato está se lee(se hace un log)
+         if("HIT".equals(chequeo)){
+             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+         }else{
+             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+         }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
     }
      
     public void local_read(Cache cacheinput,Instruccion instruccion){
+          //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
+         String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
+         System.out.println(chequeo);
+         //Se escribe un log 
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+         
+         //Si el dato está se lee(se hace un log)
+         if("HIT".equals(chequeo)){
+             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+         }else{
+             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+         }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
     }
       
     public void local_write(Cache cacheinput,Instruccion instruccion){
+         //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
+         String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
+         System.out.println(chequeo);
+         //Se escribe un log 
+         this.Log.setLastLog(cacheinput.devolverLog());
+         this.Log.WriteLastLog();
+         
+         //Si el dato está se lee(se hace un log)
+         if("HIT".equals(chequeo)){
+             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+         }else{
+             // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
+         }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
     }

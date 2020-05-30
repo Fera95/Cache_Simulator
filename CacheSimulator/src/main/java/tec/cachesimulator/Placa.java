@@ -51,10 +51,10 @@ public class Placa {
         //Se inicializa 
         //Se instancian los chips
     
-    Chip chip0_init = new Chip("P0",this.clock,this.log,this.memmanager);
+    Chip chip0_init = new Chip("Chip 0",this.clock,this.log,this.memmanager);
     this.chip0 = chip0_init;
     
-    Chip chip1_init = new Chip("P1",this.clock,this.log,this.memmanager);
+    Chip chip1_init = new Chip("Chip 1",this.clock,this.log,this.memmanager);
     this.chip1 = chip1_init;
     
     // Se setean los set del memmanager

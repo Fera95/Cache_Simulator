@@ -30,11 +30,13 @@ public class Memoria implements Constantes{
     public List<Bloque> Bloques_memoria ;
     public String Log;
     public String Nombre;
-    
     //atributo para saber si la memoria fue secuestrada
     public boolean Locked;
     //atributo para saber que instruccion se le está asignando a la memoria
     public  Instruccion Instruccion_Actual;
+    
+    public int LastHIT;
+    
     
     //atributo con todos los datos de la memoria en formato para ser enviados a
     // interfaz gráfica.
@@ -154,8 +156,8 @@ public class Memoria implements Constantes{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
-         this.Log = "En " +this.Nombre+ " el nucleo: "+Numero_nucleo+" del chip: "+Numero_chip+" leyo : "
-                 +bloque.Dato + " en la dirección "+ bloque.Direccion +" "+ timeStamp;
+        this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
+               +" Leyo el dato : " + Dato + "que apunta a la dirección de mem " + Direccion_memoria+ " de " + this.Nombre + " en la posición " + Index;
         
     }
      
@@ -204,15 +206,15 @@ public class Memoria implements Constantes{
 	     String timeStamp = dtf.format(now);
             if("Direccion".equals(Dir)){
                 result = "HIT";
-           
+                this.LastHIT = i;
             this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
-            + "En " +this.Nombre+ " Se hubo un miss  buscando la direccion " + Direccion;
+            + "En " +this.Nombre+ " Se hubo un hit  buscando la direccion guardada " + Direccion;
                 
         
             }else{
          
               this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
-            + "En " +this.Nombre+ " Se hubo un hit  buscando la direccion " + Direccion;
+            + "En " +this.Nombre+ " Se hubo un miss  buscando la direccion guardada " + Direccion;
             }       
         }
 
