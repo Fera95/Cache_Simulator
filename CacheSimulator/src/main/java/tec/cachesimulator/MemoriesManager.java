@@ -308,8 +308,12 @@ public class MemoriesManager extends Observador{
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
-             
-             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip);
+             if("M".equals(cacheinput.Bloques_memoria.get(cacheinput.LastHIT).Estado)){
+              //Write-Back
+                 this.cacheL2_used.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
+                 //Se para a I
+                 cacheinput.modificarEstado(cacheinput.LastHIT, "S");
+             }
          }else{
              // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
          }
