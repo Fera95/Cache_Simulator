@@ -61,6 +61,70 @@ public class Bloque {
         this.Direccion = Direccion;
     }
 
+   /*public void setDireccion(int index) throws InterruptedException {
+        try {
+            Thread.sleep(2000);
+              switch (index) {
+                      case 0:
+                                    this.Direccion = "0000";
+                                    break;
+                      case 1:
+                                   this.Direccion = "0001";
+                                    break;
+                     case 2:
+                                    this.Direccion = "0010";
+                                    break;
+                     case 3:
+                                   this.Direccion = "0011";
+                                    break;
+                                    
+                     case 4:
+                                    this.Direccion = "0100";
+                                    break;
+                      case 5:
+                                   this.Direccion = "0101";
+                                    break;
+                     case 6:
+                                    this.Direccion = "0110";
+                                    break;
+                      case 7:
+                                   this.Direccion = "0111";
+                                    break;
+                                    
+                     case 8:
+                                    this.Direccion = "1000";
+                                    break;
+                      case 9:
+                                   this.Direccion = "1001";
+                                    break;
+                     case 10:
+                                    this.Direccion = "1010";
+                                    break;
+                     case 11:
+                                   this.Direccion = "1011";
+                                    break;
+                                    
+                     case 12:
+                                    this.Direccion = "1100";
+                                    break;
+                      case 13:
+                                   this.Direccion = "1101";
+                                    break;
+                     case 14:
+                                    this.Direccion = "1110";
+                                    break;
+                      case 15:
+                                   this.Direccion = "1111";
+                                    break;
+                                    
+            
+    }}catch(Exception e){
+            System.out.println(e);
+    }
+        
+    }*/
+    
+    
     public void setEstado(String Estado) {
         this.Estado = Estado;
     }

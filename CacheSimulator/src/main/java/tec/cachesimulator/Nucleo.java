@@ -81,7 +81,7 @@ public void generarInstruccion(){
                         
                         if("CALC".equals(operacion_tomada) || "READ".equals(operacion_tomada)){
                             //Dato well known por el momento
-                         dato_well_known = " ";
+                         dato_well_known = "READ";
                          isWrite = false;
                         }
                         else{

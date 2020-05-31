@@ -121,7 +121,8 @@ public class MemoriesManager extends Observador{
     @Override
     public void actualizar(Instruccion instruccion,String Nombre){
      
-     
+      
+        System.out.println(Nombre);
         
     //Se chequea el tipo de cache por el nombre si es L1 o L2?
     
@@ -129,8 +130,8 @@ public class MemoriesManager extends Observador{
         
         //Se chequea cuales seran las caches con las que se trabajaran en monitor
 
-        System.out.println("Se entra level 1");
-    
+       
+      
        
     if("Chip 0".equals(instruccion.Numero_chip)){
         if("Procesador 0".equals(instruccion.Numero_nucleo)){
@@ -162,12 +163,12 @@ public class MemoriesManager extends Observador{
               switch (instruccion.Operacion) {
                       case "WRITE":
                                     this.local_write(this.cacheL1_local,instruccion);
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
                                     this.snoop_write(this.cacheL1_snoop,instruccion);      
                                     break;
                       case "READ":
                                     this.local_read(this.cacheL1_local,instruccion);
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
                                     this.snoop_read(this.cacheL1_snoop,instruccion);      
                                     break;
                       case "CALC":
@@ -237,12 +238,12 @@ public class MemoriesManager extends Observador{
               switch (instruccion.Operacion) {
                       case "WRITE":
                                     this.write_Director(cacheL2_on_use, instruccion);
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
                                       
                                     break;
                       case "READ":
                                     
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
                                  
                                     break;
             
@@ -307,7 +308,8 @@ public class MemoriesManager extends Observador{
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
-             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+             
+             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip);
          }else{
              // el protocolo sigue en caso de no estar en este nivel siendo un snoop chequando
          }
@@ -339,7 +341,9 @@ public class MemoriesManager extends Observador{
     }
      
     public void local_read(Cache cacheinput,Instruccion instruccion){
-          //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
+          
+        
+        //Se chequea si el dato está en caché , (agregar chequear estado y todo eso)
          String chequeo=  cacheinput.checkMiss(instruccion.Direccion_memoria);
      
          //Se escribe un log 
@@ -348,10 +352,23 @@ public class MemoriesManager extends Observador{
          
          //Si el dato está se lee(se hace un log)
          if("HIT".equals(chequeo)){
-             cacheinput.leerDato(cacheinput.LastHIT,instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,instruccion.Dato);
+             String Estado = cacheinput.Bloques_memoria.get(cacheinput.LastHIT).Estado;
+             
+             if("I".equals(Estado)){
+                 this.read_to_L2(cacheinput,this.cacheL2_used,instruccion.Direccion_memoria,instruccion);
+             }
+             else{
+              cacheinput.leerDato(cacheinput.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+              this.Log.setLastLog(cacheinput.devolverLog());
+               this.Log.WriteLastLog();
+               
+            
+              //Se cambia estado a S
+              cacheinput.modificarEstado(cacheinput.LastHIT, "S");
+             }
          }else{
-           instruccion.Dato = "New Dato";
-           this.cacheL2_used.setInstruccion_Actual(instruccion);
+             
+          this.read_to_L2(cacheinput,this.cacheL2_used,instruccion.Direccion_memoria,instruccion);
          }
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
@@ -378,6 +395,98 @@ public class MemoriesManager extends Observador{
          this.Log.WriteLastLog();
  
     }
+    
+    //Funcion auxliar de local read
+    public void read_to_L2(Cache cacheL1,Cache cacheL2,String Direccion,Instruccion instruccion){
+        
+        
+
+      //check en L2
+        String chequeo = cacheL2.checkMiss(Direccion);
+        
+        this.Log.setLastLog(cacheL2.devolverLog());
+         this.Log.WriteLastLog();
+ 
+         if("HIT".equals(chequeo)){
+             //Aqui se sube el dato de L2 a L1
+           
+               cacheL1.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip,instruccion.Direccion_memoria,cacheL2.Bloques_memoria.get(cacheL2.LastHIT).Dato);
+               this.Log.setLastLog(cacheL1.devolverLog());
+               this.Log.WriteLastLog();
+               
+               
+             //Se vuelve a hacer chequeo en L1 para tener lastHit
+              String chequeo2 = cacheL1.checkMiss(Direccion);
+              cacheL1.leerDato(cacheL1.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+              this.Log.setLastLog(cacheL1.devolverLog());
+               this.Log.WriteLastLog();
+               
+            
+              //Se cambia estado a S
+              cacheL1.modificarEstado(cacheL1.LastHIT, "S");
+         }else{
+            
+            //Se llama a esta funcion para subirlo de mem a L2 y L1 
+            this.read_to_Mem(cacheL1,cacheL2,Direccion,instruccion);
+            
+            //Se vuelve a hacer chequeo en L1 para tener lastHit
+              String chequeo2 = cacheL1.checkMiss(Direccion);
+              cacheL1.leerDato(cacheL1.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+              this.Log.setLastLog(cacheL1.devolverLog());
+               this.Log.WriteLastLog();
+               
+            
+              //Se cambia estado a S
+              cacheL1.modificarEstado(cacheL1.LastHIT, "S");
+               this.Log.setLastLog(cacheL1.devolverLog());
+               this.Log.WriteLastLog();
+         }
+    }
+    
+    
+     public void read_to_Mem(Cache cacheL1,Cache cacheL2,String Direccion,Instruccion instruccion){
+        
+         
+       //check en memoria principal solo por el Last Hit en mem principa;
+       String Dato = this.memprincipal.datobydir(Direccion);
+        
+       
+       // Se arma lo que se va a escribir
+       
+       instruccion.Dato = Dato;
+       
+       // Se sube el dato a L2 y se pasa a S
+       
+       this.local_write(cacheL1, instruccion);
+       
+       String chequeo1 = cacheL2.checkMiss(Direccion);
+       cacheL2.leerDato(cacheL2.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+       this.Log.setLastLog(cacheL2.devolverLog());
+       this.Log.WriteLastLog();
+        //Se cambia estado a S
+       cacheL2.modificarEstado(cacheL2.LastHIT, "S");
+       this.Log.setLastLog(cacheL2.devolverLog());
+       this.Log.WriteLastLog();
+       
+        // Se sube el dato a L1 y se pasa a S
+        
+        
+        this.write_Director(cacheL2, instruccion);
+        
+        String chequeo2 = cacheL1.checkMiss(Direccion);
+        cacheL1.leerDato(cacheL1.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+        this.Log.setLastLog(cacheL1.devolverLog());
+        this.Log.WriteLastLog();
+          //Se cambia estado a S
+       cacheL1.modificarEstado(cacheL1.LastHIT, "S");
+       this.Log.setLastLog(cacheL1.devolverLog());
+       this.Log.WriteLastLog(); 
+        
+     }
+    
+    
+    
+    
     
     public void read_Director(Cache cacheinput,Instruccion instruccion){
         System.out.println("Read_Director");

@@ -112,14 +112,22 @@ public class Memoria implements Constantes{
         boolean hay_I = false;
         boolean hay_S = false;
         
-        Bloque bloque = new Bloque(Direccion_memoria,Dato);
-        bloque.setEstado("M");
+        
         
         
         
          for(int i=0; i< this.Tamaño_memoria;i++){
             String estado = this.Bloques_memoria.get(i).getEstado();
-             
+            Bloque bloque = new Bloque(this.Bloques_memoria.get(i).Direccion,Dato);
+            bloque.setDireccionGuarda(Direccion_memoria);
+            bloque.setEstado("M");
+            
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+            LocalDateTime now = LocalDateTime.now();
+            String timeStamp = dtf.format(now);
+            this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
+            +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
+            
             if("I".equals(estado)){
                 this.Bloques_memoria.remove(i);
                 this.Bloques_memoria.add(i, bloque);
@@ -130,8 +138,20 @@ public class Memoria implements Constantes{
          }
         
          if(hay_I==false){
+             
             for(int i=0; i< this.Tamaño_memoria;i++){
-            String estado = this.Bloques_memoria.get(i).getEstado();
+            
+             String estado = this.Bloques_memoria.get(i).getEstado();
+            Bloque bloque = new Bloque(this.Bloques_memoria.get(i).Direccion,Dato);
+            bloque.setDireccionGuarda(Direccion_memoria);
+            bloque.setEstado("M");   
+            
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+            LocalDateTime now = LocalDateTime.now();
+            String timeStamp = dtf.format(now);
+            this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
+            +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
+   
              
             if("S".equals(estado)){
                 this.Bloques_memoria.remove(i);
@@ -144,31 +164,44 @@ public class Memoria implements Constantes{
          }
          
          if(hay_I == false && hay_S==false){
+            
+            Bloque bloque = new Bloque(this.Bloques_memoria.get(0).Direccion,Dato);
+            bloque.setDireccionGuarda(Direccion_memoria);
+            bloque.setEstado("M");
              this.Bloques_memoria.remove(0);
              this.Bloques_memoria.add(0, bloque);
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+            LocalDateTime now = LocalDateTime.now();
+            String timeStamp = dtf.format(now);
+              this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
+               +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + 0;
          }
         
         
         
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
-	LocalDateTime now = LocalDateTime.now();
-	String timeStamp = dtf.format(now);
+    
         
         
-         this.Log = "En " +this.Nombre+ " el nucleo: "+Numero_nucleo+" del chip: "+Numero_chip+" escribio: "
-                 +Dato + " con la dirección "+ Direccion_memoria +" "+ timeStamp;
+       
+         
+        
 
     }
     
     //Metodo encargado de leer la memoria este escribe en log y devuelve el dato en forma de 
     
-    public void leerDato(int Index,String Numero_nucleo,String Numero_chip,String Direccion_memoria,String Dato){
+    public void leerDato(int Index,String Numero_nucleo,String Numero_chip){
         Bloque bloque = this.Bloques_memoria.get(Index);
+        
+        
+        
+        
+        
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
-        this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
-               +" Leyo el dato : " + Dato + "que apunta a la dirección de mem " + Direccion_memoria+ " de " + this.Nombre + " en la posición " + Index;
+        this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
+               +" Leyo el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + Index;
         
     }
      
@@ -207,6 +240,27 @@ public class Memoria implements Constantes{
         return this.Log;
     }
     
+    
+    //Metodo para obtener dato basado en direccion (usado solo en memprincipal)
+    
+    public String datobydir(String Direccion){
+        String Dato = null;
+       for(int i=0; i< this.Tamaño_memoria;i++){
+            String Dir = this.Bloques_memoria.get(i).Direccion;
+             
+            if(Dir.equals(Direccion)){
+               
+             Dato = this.Bloques_memoria.get(i).Dato;
+            }
+        
+        
+    }
+       return Dato;
+    }
+    
+    
+    
+    
     //Metodo para chequear si hay un miss de una dereccion de algun bloque de memoria
     public String checkMiss(String Direccion){
         String result="MISS";
@@ -215,7 +269,7 @@ public class Memoria implements Constantes{
              DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
 	     LocalDateTime now = LocalDateTime.now();
 	     String timeStamp = dtf.format(now);
-            if("Direccion".equals(Dir)){
+            if(Dir.equals(Direccion)){
                 result = "HIT";
                 this.LastHIT = i;
             this.Log = timeStamp + " , " + this.Instruccion_Actual.Numero_chip + " ," + this.Instruccion_Actual.Numero_nucleo + " , " + " Detalle: "
