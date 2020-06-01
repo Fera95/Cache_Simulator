@@ -585,92 +585,88 @@ public class MemoriesManager extends Observador{
     
     
     public void read_Director(Cache cacheinput,Instruccion instruccion){
-          try {
+           try {
             Thread.sleep(2000);
+            
+             String Dump;
               switch (instruccion.Direccion_memoria) {
                       case "0000":
-                                    String Dump = this.Directorio0000.getdump();
-                                    if("000".equals(Dump)){
-                                        
-                                    }
-                                    
-                                    
                                     
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0001":
-                                    
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0010":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0011":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0100":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0101":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0110":
-                                   
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0111":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1000":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1001":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1010":
-                                   
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1011":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1100":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1101":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1110":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1111":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
@@ -740,7 +736,13 @@ public class MemoriesManager extends Observador{
 
 
     
-
+    //Funciones auxiliares de directorio.
+    public void Chequeo_Write_Director(Cache L2_1, Cache L2_2,Directorio directorio,Instruccion instruccion ){
+        
+    }
+ public void Chequeo_Read_Director(Cache L2_1, Cache L2_2,Directorio directorio,Instruccion instruccion ){
+        
+    }
     
     
     
