@@ -38,6 +38,7 @@ public class MemoriesManager extends Observador{
     public Cache cacheL2_1;
     public Cache cacheL2_2;
     public Cache cacheL2_on_use;
+    public Cache cacheL2_other;
     public Memoria memprincipal;
     
     
@@ -219,9 +220,11 @@ public class MemoriesManager extends Observador{
         
    if("Chip 0".equals(instruccion.Numero_chip)){
       this.cacheL2_on_use = this.cacheL2_1;
+      this.cacheL2_other = this.cacheL1_2;
     }
     else{
         this.cacheL2_on_use = this.cacheL2_2;
+         this.cacheL2_other = this.cacheL1_1;
     }
         
         
@@ -393,86 +396,91 @@ public class MemoriesManager extends Observador{
     // Metodos de nivel 2
     
     public void write_Director(Cache cacheinput,Instruccion instruccion){
-            try {
+            
+        // el input es la cache L2 de la instrucion actual 
+        
+        try {
             Thread.sleep(2000);
+            
+             String Dump;
               switch (instruccion.Direccion_memoria) {
                       case "0000":
-                                   
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0001":
-                                    
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0010":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0011":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0100":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0101":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "0110":
-                                   
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "0111":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1000":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1001":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1010":
-                                   
+                                    Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1011":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1100":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1101":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
                       case "1110":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                       
                                     break;
                       case "1111":
-                                    
+                                     Dump = this.Directorio0000.getdump();
                                     Thread.sleep(1000);
                                  
                                     break;
@@ -581,7 +589,13 @@ public class MemoriesManager extends Observador{
             Thread.sleep(2000);
               switch (instruccion.Direccion_memoria) {
                       case "0000":
-                                   
+                                    String Dump = this.Directorio0000.getdump();
+                                    if("000".equals(Dump)){
+                                        
+                                    }
+                                    
+                                    
+                                    
                                     Thread.sleep(1000);
                                       
                                     break;
