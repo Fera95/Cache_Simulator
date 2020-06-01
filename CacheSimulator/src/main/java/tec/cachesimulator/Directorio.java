@@ -45,6 +45,10 @@ String Presencia_en_CacheL2_2;
     }
     
 
- 
+     public String getdump(){
+         String dump = this.Dirty_Bit + this.Presencia_en_CacheL2_1 + this.Presencia_en_CacheL2_2 ;
+         
+         return dump;
+    }
 
 }

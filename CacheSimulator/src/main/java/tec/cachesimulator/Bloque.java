@@ -61,6 +61,8 @@ public class Bloque {
         this.Direccion = Direccion;
     }
 
+    
+   
    /*public void setDireccion(int index) throws InterruptedException {
         try {
             Thread.sleep(2000);

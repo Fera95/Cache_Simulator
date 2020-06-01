@@ -122,7 +122,7 @@ public class MemoriesManager extends Observador{
     public void actualizar(Instruccion instruccion,String Nombre){
      
       
-        System.out.println(Nombre);
+        System.out.println(this.Directorio0000.getdump());
         
     //Se chequea el tipo de cache por el nombre si es L1 o L2?
     
@@ -393,10 +393,94 @@ public class MemoriesManager extends Observador{
     // Metodos de nivel 2
     
     public void write_Director(Cache cacheinput,Instruccion instruccion){
-       
-        cacheinput.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
-         this.Log.setLastLog(cacheinput.devolverLog());
-         this.Log.WriteLastLog();
+            try {
+            Thread.sleep(2000);
+              switch (instruccion.Direccion_memoria) {
+                      case "0000":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0001":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0010":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0011":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0100":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0101":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0110":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0111":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1000":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1001":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1010":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1011":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1100":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1101":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1110":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1111":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+            
+              }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
  
     }
     
@@ -493,7 +577,95 @@ public class MemoriesManager extends Observador{
     
     
     public void read_Director(Cache cacheinput,Instruccion instruccion){
-        System.out.println("Read_Director");
+          try {
+            Thread.sleep(2000);
+              switch (instruccion.Direccion_memoria) {
+                      case "0000":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0001":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0010":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0011":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0100":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0101":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "0110":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "0111":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1000":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1001":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1010":
+                                   
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1011":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1100":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1101":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+                      case "1110":
+                                    
+                                    Thread.sleep(1000);
+                                      
+                                    break;
+                      case "1111":
+                                    
+                                    Thread.sleep(1000);
+                                 
+                                    break;
+            
+              }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
     }
 
     public Cache getCacheL1_1_p0() {
