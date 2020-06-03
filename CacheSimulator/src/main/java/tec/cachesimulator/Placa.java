@@ -59,8 +59,21 @@ public class Placa {
     
     // Se setean los set del memmanager
     
+    /*
+       //Chip 0
+    public Cache cacheL1_1_p0;
+    public Cache cacheL1_1_p1;
+    
+  
+    
+    //Chip1
+    public Cache cacheL1_2_p0;
+    public Cache cacheL1_2_p1;*/
+    
+    
      this.memmanager.setCacheL1_1_p0(this.chip0.cacheL1_1);
      this.memmanager.setCacheL1_1_p1(this.chip0.cacheL1_2);
+     
      
      this.memmanager.setCacheL1_2_p0(this.chip1.cacheL1_1);
      this.memmanager.setCacheL1_2_p1(this.chip1.cacheL1_2);

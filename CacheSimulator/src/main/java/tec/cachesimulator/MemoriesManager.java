@@ -20,10 +20,16 @@ import java.util.logging.Logger;
 public class MemoriesManager extends Observador{
    // Parte de monitor
     
+    //Chip 0
     public Cache cacheL1_1_p0;
-    public Cache cacheL1_2_p0;
     public Cache cacheL1_1_p1;
+    
+  
+    
+    //Chip1
+    public Cache cacheL1_2_p0;
     public Cache cacheL1_2_p1;
+    
     
     
     public LogManager Log;
@@ -40,6 +46,7 @@ public class MemoriesManager extends Observador{
     public Cache cacheL2_on_use;
     public Cache cacheL2_other;
     public Memoria memprincipal;
+    public boolean L2Flag;
     
     
     public Directorio Directorio0000;
@@ -67,7 +74,8 @@ public class MemoriesManager extends Observador{
     public MemoriesManager(LogManager Log, Memoria memprincipal){
         this.Log = Log;  
         this.memprincipal = memprincipal;
-       
+        this.cacheL1_local = null;
+        this.cacheL1_snoop= null;
         
         Directorio Directorio0000init = new Directorio("0000");
         this.Directorio0000 = Directorio0000init;
@@ -122,8 +130,9 @@ public class MemoriesManager extends Observador{
     @Override
     public void actualizar(Instruccion instruccion,String Nombre){
      
+   
+   
       
-        System.out.println(this.Directorio0000.getdump());
         
     //Se chequea el tipo de cache por el nombre si es L1 o L2?
     
@@ -131,46 +140,44 @@ public class MemoriesManager extends Observador{
         
         //Se chequea cuales seran las caches con las que se trabajaran en monitor
 
-       
-      
+        /*
+        
+           //Chip 0
+    public Cache cacheL1_1_p0;
+    public Cache cacheL1_1_p1;
+    
+  
+    
+    //Chip1
+    public Cache cacheL1_2_p0;
+    public Cache cacheL1_2_p1;
+        
+        
+        */
        
     if("Chip 0".equals(instruccion.Numero_chip)){
+      
         if("Procesador 0".equals(instruccion.Numero_nucleo)){
-            this.cacheL1_local = this.cacheL1_1_p0;
-            this.cacheL1_snoop = this.cacheL1_1_p1;
+          
+         
             this.cacheL2_used = this.cacheL2_1;
-        }else{
-            this.cacheL1_local = this.cacheL1_1_p1;
-            this.cacheL1_snoop = this.cacheL1_1_p0;
-            this.cacheL2_used = this.cacheL2_1;
-        }
-    }
-    else{
-         if("Procesador 0".equals(instruccion.Numero_nucleo)){
-            this.cacheL1_local = this.cacheL1_2_p0;
-            this.cacheL1_snoop = this.cacheL1_2_p1;
-             this.cacheL2_used = this.cacheL2_2;
-        }else{
-            this.cacheL1_local = this.cacheL1_2_p1;
-            this.cacheL1_snoop = this.cacheL1_2_p0;
-            this.cacheL2_used = this.cacheL2_2;
-        }
-    }
-     
-    
-        //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+            
+            
+            
+               //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
         try {
-            Thread.sleep(2000);
+            Thread.sleep(3000);
+             
               switch (instruccion.Operacion) {
                       case "WRITE":
-                                    this.local_write(this.cacheL1_local,instruccion);
-                                    Thread.sleep(1000);
-                                    this.snoop_write(this.cacheL1_snoop,instruccion);      
+                                    this.local_write(this.cacheL1_1_p0,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_write(this.cacheL1_1_p1,instruccion);      
                                     break;
                       case "READ":
-                                    this.local_read(this.cacheL1_local,instruccion);
-                                    Thread.sleep(1000);
-                                    this.snoop_read(this.cacheL1_snoop,instruccion);      
+                                    this.local_read(this.cacheL1_1_p0,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_read(this.cacheL1_1_p1,instruccion);      
                                     break;
                       case "CALC":
                                   
@@ -187,10 +194,147 @@ public class MemoriesManager extends Observador{
             System.out.println(ex);
         }
         
+            
+            
+            
+           
+        }else{
+           
+       
+
+            
+            
+            
+               
+             //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+        try {
+            Thread.sleep(3000);
+             
+              switch (instruccion.Operacion) {
+                      case "WRITE":
+                                    this.local_write(this.cacheL1_1_p1,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_write(this.cacheL1_1_p0,instruccion);      
+                                    break;
+                      case "READ":
+                                    this.local_read(this.cacheL1_1_p1,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_read(this.cacheL1_1_p0,instruccion);      
+                                    break;
+                      case "CALC":
+                                  
+                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+                                     LocalDateTime now = LocalDateTime.now();
+	                             String timeStamp = dtf.format(now);
+                                    String log = timeStamp + " , " + instruccion.Numero_chip + " ," + instruccion.Numero_nucleo + " , " + " Detalle: "
+                                    +" Calculó el dato : " + instruccion.Dato + "que apunta a la dirección de mem " +  instruccion.Direccion_memoria;  
+                                     this.Log.setLastLog(log);
+                                     this.Log.WriteLastLog();
+                                     break;
+    }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+            
+            
+            
+        }
+    }
+    else{
+         if("Procesador 0".equals(instruccion.Numero_nucleo)){
+          
+          
+             this.cacheL2_used = this.cacheL2_2;
+             
+             
+             
+             //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+        try {
+            Thread.sleep(3000);
+             
+              switch (instruccion.Operacion) {
+                      case "WRITE":
+                                    this.local_write(this.cacheL1_2_p0,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_write(this.cacheL1_2_p1,instruccion);      
+                                    break;
+                      case "READ":
+                                    this.local_read(this.cacheL1_2_p0,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_read(this.cacheL1_2_p1,instruccion);      
+                                    break;
+                      case "CALC":
+                                  
+                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+                                     LocalDateTime now = LocalDateTime.now();
+	                             String timeStamp = dtf.format(now);
+                                    String log = timeStamp + " , " + instruccion.Numero_chip + " ," + instruccion.Numero_nucleo + " , " + " Detalle: "
+                                    +" Calculó el dato : " + instruccion.Dato + "que apunta a la dirección de mem " +  instruccion.Direccion_memoria;  
+                                     this.Log.setLastLog(log);
+                                     this.Log.WriteLastLog();
+                                     break;
+    }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+           
+             
+             
+             
+        }else{
+            
+            
+          
+            
+            
+            
+            
+        //Se chequea el tipo de instrucción y se hace MSI(falta chequear estados y que hacer)  o se llama a Directorio
+        try {
+            Thread.sleep(3000);
+             
+              switch (instruccion.Operacion) {
+                      case "WRITE":
+                                    this.local_write(this.cacheL1_2_p1,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_write(this.cacheL1_2_p0,instruccion);      
+                                    break;
+                      case "READ":
+                                    this.local_read(this.cacheL1_2_p1,instruccion);
+                                    Thread.sleep(2000);
+                                    this.snoop_read(this.cacheL1_2_p0,instruccion);      
+                                    break;
+                      case "CALC":
+                                  
+                                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss.SSS");
+                                     LocalDateTime now = LocalDateTime.now();
+	                             String timeStamp = dtf.format(now);
+                                    String log = timeStamp + " , " + instruccion.Numero_chip + " ," + instruccion.Numero_nucleo + " , " + " Detalle: "
+                                    +" Calculó el dato : " + instruccion.Dato + "que apunta a la dirección de mem " +  instruccion.Direccion_memoria;  
+                                     this.Log.setLastLog(log);
+                                     this.Log.WriteLastLog();
+                                     break;
+    }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        
+            
+            
+            
+            
+        }
+    }
+     
+    
               //Se setea para el gui
       
       
-      
+    //Limpiar los caches locales y snoop
+
+              
     this.cacheL1_1_p0.SetearDatos();
     this.cacheL1_2_p0.SetearDatos();
     this.cacheL1_1_p1.SetearDatos();
@@ -220,11 +364,13 @@ public class MemoriesManager extends Observador{
         
    if("Chip 0".equals(instruccion.Numero_chip)){
       this.cacheL2_on_use = this.cacheL2_1;
-      this.cacheL2_other = this.cacheL1_2;
+      this.cacheL2_other = this.cacheL2_2;
+      this.L2Flag = true;
     }
     else{
         this.cacheL2_on_use = this.cacheL2_2;
-         this.cacheL2_other = this.cacheL1_1;
+         this.cacheL2_other = this.cacheL2_1;
+         this.L2Flag=false;
     }
         
         
@@ -241,12 +387,12 @@ public class MemoriesManager extends Observador{
               switch (instruccion.Operacion) {
                       case "WRITE":
                                     this.write_Director(cacheL2_on_use, instruccion);
-                                    Thread.sleep(1000);
+                                    Thread.sleep(2000);
                                       
                                     break;
                       case "READ":
-                                    
-                                    Thread.sleep(1000);
+                                    this.read_Director(cacheL2_on_use, instruccion);
+                                    Thread.sleep(2000);
                                  
                                     break;
             
@@ -257,9 +403,7 @@ public class MemoriesManager extends Observador{
         
         
         
-        
-        
-        
+       
     
 
 
@@ -384,10 +528,12 @@ public class MemoriesManager extends Observador{
     public void local_write(Cache cacheinput,Instruccion instruccion){
         //Se escribe el dato
         cacheinput.escribirDato(instruccion.Numero_nucleo, instruccion.Numero_chip, instruccion.Direccion_memoria, instruccion.Dato);
-        //Se hace un Write-throught
-        this.cacheL2_used.setInstruccion_Actual(instruccion);
          this.Log.setLastLog(cacheinput.devolverLog());
          this.Log.WriteLastLog();
+        
+         //Se hace un Write-throught
+        this.cacheL2_used.setInstruccion_Actual(instruccion);
+        
     }
     
   
@@ -402,86 +548,87 @@ public class MemoriesManager extends Observador{
         try {
             Thread.sleep(2000);
             
-             String Dump;
+           
               switch (instruccion.Direccion_memoria) {
                       case "0000":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   
+                                    Chequeo_Write_Director(this.Directorio0000,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0001":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio0001,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0010":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio0010,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0011":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Write_Director(this.Directorio0011,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0100":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio0100,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0101":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio0101,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0110":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Write_Director(this.Directorio0110,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0111":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio0111,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1000":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Write_Director(this.Directorio1000,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1001":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio1001,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1010":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Write_Director(this.Directorio1010,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1011":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Write_Director(this.Directorio1011,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1100":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Write_Director(this.Directorio1100,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1101":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                  Chequeo_Write_Director(this.Directorio1101,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1110":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio1110,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1111":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Write_Director(this.Directorio1111,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
             
@@ -586,88 +733,89 @@ public class MemoriesManager extends Observador{
     
     public void read_Director(Cache cacheinput,Instruccion instruccion){
            try {
-            Thread.sleep(2000);
+           Thread.sleep(2000);
             
-             String Dump;
+           
               switch (instruccion.Direccion_memoria) {
                       case "0000":
-                                    
-                                    Thread.sleep(1000);
+                                   
+                                    Chequeo_Read_Director(this.Directorio0000,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0001":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio0001,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0010":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio0010,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0011":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Read_Director(this.Directorio0011,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0100":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio0100,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0101":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio0101,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "0110":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Read_Director(this.Directorio0110,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "0111":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio0111,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1000":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Read_Director(this.Directorio1000,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1001":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio1001,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1010":
-                                    Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Read_Director(this.Directorio1010,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1011":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                   Chequeo_Read_Director(this.Directorio1011,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1100":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                     Chequeo_Read_Director(this.Directorio1100,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1101":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                  Chequeo_Read_Director(this.Directorio1101,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
                       case "1110":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio1110,instruccion);
+                                    Thread.sleep(1500);
                                       
                                     break;
                       case "1111":
-                                     Dump = this.Directorio0000.getdump();
-                                    Thread.sleep(1000);
+                                    Chequeo_Read_Director(this.Directorio1111,instruccion);
+                                    Thread.sleep(1500);
                                  
                                     break;
             
@@ -737,11 +885,304 @@ public class MemoriesManager extends Observador{
 
     
     //Funciones auxiliares de directorio.
-    public void Chequeo_Write_Director(Cache L2_1, Cache L2_2,Directorio directorio,Instruccion instruccion ){
+    public void Chequeo_Write_Director(Directorio directorio,Instruccion instruccion ){
         
+        String dump = directorio.getdump();
+        
+            /* 
+            
+            this.cacheL2_on_use = this.cacheL2_1;
+            this.cacheL2_other = this.cacheL1_2;
+            this.L2Flag = true;
+   
+            this.cacheL2_on_use = this.cacheL2_2;
+            this.cacheL2_other = this.cacheL1_1;
+            this.L2Flag=false;
+            
+            */ 
+        
+        
+        
+        
+         try {
+         switch (dump) {
+                      case "000":
+                                   //Se verifica cual es la L2 local para actualizar el directorio al final 
+                                   //Se escribe
+                                   //Se actualiza directorio
+                                   if(this.L2Flag){
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("1");
+                                        directorio.setPresencia_en_CacheL2_2("0");
+                                    }else{
+                                         this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                         this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                         this.Log.WriteLastLog(); 
+                                           directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("0");
+                                        directorio.setPresencia_en_CacheL2_2("1");
+                                    }
+                                      
+                                    break;
+
+                      case "110":
+                                     if(this.L2Flag){
+                                         //Se hace wrteback en memoria principal
+                                        int index  = Integer.parseInt(instruccion.Direccion_memoria, 2);
+                                        this.memprincipal.Bloques_memoria.get(index).Dato = instruccion.Dato;
+                                        String Dueño = this.cacheL2_on_use.Instruccion_Actual.Numero_chip;
+                                        this.memprincipal.Bloques_memoria.get(index).Dueños.add(Dueño);
+                                        this.memprincipal.Bloques_memoria.get(index).CrearStringDueños();
+                                       
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("1");
+                                        directorio.setPresencia_en_CacheL2_2("0");
+                                        
+                                         
+                                    }else{
+                                         
+                                         //Se invalida el otro dato en cache L2 
+                                        String chequeo = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                                        this.cacheL2_other.modificarEstado(this.cacheL2_other.LastHIT, "I");
+                                        this.Log.setLastLog(cacheL2_other.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("0");
+                                        directorio.setPresencia_en_CacheL2_2("1");
+                                    }
+                                 
+                                    break;
+                      case "101":
+                                    if(this.L2Flag){
+                                        
+                                            //Se invalida el otro dato en cache L2 
+                                        String chequeo = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                                        this.cacheL2_other.modificarEstado(this.cacheL2_other.LastHIT, "I");
+                                        this.Log.setLastLog(cacheL2_other.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("1");
+                                        directorio.setPresencia_en_CacheL2_2("0");
+                                        
+                                    }else{
+                                        
+                                          //Se hace wrteback en memoria principal
+                                        int index  = Integer.parseInt(instruccion.Direccion_memoria, 2);
+                                        this.memprincipal.Bloques_memoria.get(index).Dato = instruccion.Dato;
+                                     
+                                        String Dueño = this.cacheL2_on_use.Instruccion_Actual.Numero_chip;
+                                        this.memprincipal.Bloques_memoria.get(index).Dueños.add(Dueño);
+                                        this.memprincipal.Bloques_memoria.get(index).CrearStringDueños();
+                                       
+                                       
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("0");
+                                        directorio.setPresencia_en_CacheL2_2("1");
+                                        
+                                    }
+                                    break;
+                      case "011":
+                                    if(this.L2Flag){
+                                            //Se invalida el otro dato en cache L2 
+                                        String chequeo = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                                        this.cacheL2_other.modificarEstado(this.cacheL2_other.LastHIT, "I");
+                                        this.Log.setLastLog(cacheL2_other.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("1");
+                                        directorio.setPresencia_en_CacheL2_2("0");
+                                    }else{
+                                            //Se invalida el otro dato en cache L2 
+                                        String chequeo = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                                        this.cacheL2_other.modificarEstado(this.cacheL2_other.LastHIT, "I");
+                                        this.Log.setLastLog(cacheL2_other.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se escribe en L2 
+                                        this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,instruccion.Dato);
+                                        this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                                        this.Log.WriteLastLog(); 
+                                        
+                                        //Se actualiza directorio
+                                        directorio.setDirty_Bit("1");
+                                        directorio.setPresencia_en_CacheL2_1("0");
+                                        directorio.setPresencia_en_CacheL2_2("1");
+                                    }
+                                    break;
+                     
+         }}
+         catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
- public void Chequeo_Read_Director(Cache L2_1, Cache L2_2,Directorio directorio,Instruccion instruccion ){
+ public void Chequeo_Read_Director(Directorio directorio,Instruccion instruccion){
+         String dump = directorio.getdump();
+  
         
+            /* 
+            
+            this.cacheL2_on_use = this.cacheL2_1;
+            this.cacheL2_other = this.cacheL1_2;
+            this.L2Flag = true;
+   
+            this.cacheL2_on_use = this.cacheL2_2;
+            this.cacheL2_other = this.cacheL1_1;
+            this.L2Flag=false;
+            
+            */ 
+        
+        
+        
+        
+         try {
+         switch (dump) {
+             case "000":
+                 
+                  int index  = Integer.parseInt(instruccion.Direccion_memoria, 2);
+                 
+                  //Se escribe en L2 a partir de mem principal
+                   this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,this.memprincipal.Bloques_memoria.get(index).Dato);
+                   this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                   this.Log.WriteLastLog(); 
+                   
+                   //Se lee dato 
+                   
+                    String chequeo = cacheL2_on_use.checkMiss(instruccion.Direccion_memoria);
+                    cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                    this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                   
+                      
+                      
+                      if(this.L2Flag){
+                   //Se actualiza directorio
+                    directorio.setDirty_Bit("1");
+                    directorio.setPresencia_en_CacheL2_1("0");
+                    directorio.setPresencia_en_CacheL2_2("1");
+                  }
+                  
+                  else{
+                       //Se actualiza directorio
+                    directorio.setDirty_Bit("1");
+                    directorio.setPresencia_en_CacheL2_1("1");
+                    directorio.setPresencia_en_CacheL2_2("0");
+                  }
+                      
+                   
+                 break;
+             case "110":
+                  if(this.L2Flag){
+                      
+                      //Se copia dato de la otra memoria
+                      String chequeo2 = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                      String Dato_hermano1 = this.cacheL2_other.Bloques_memoria.get(this.cacheL2_other.LastHIT).Dato;
+                      this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,Dato_hermano1);
+                      this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                      
+                      
+                      //Se lee
+                      cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                      this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                      
+                        //Se actualiza directorio
+                    directorio.setDirty_Bit("0");
+                    directorio.setPresencia_en_CacheL2_1("1");
+                    directorio.setPresencia_en_CacheL2_2("1");
+                  
+                  }
+                  
+                  else{
+                          
+                    String chequeo2 = cacheL2_on_use.checkMiss(instruccion.Direccion_memoria);
+                    cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                    this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                   
+                      
+                      
+                      
+                  }
+               case "101":
+                  if(this.L2Flag){
+                       
+                    String cheque3 = cacheL2_on_use.checkMiss(instruccion.Direccion_memoria);
+                    cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                    this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                    this.Log.WriteLastLog();
+                   
+                  }
+                  
+                  else{
+                      //Se copia dato de la otra memoria
+                      String chequeo2 = this.cacheL2_other.checkMiss(instruccion.Direccion_memoria);
+                      String Dato_hermano1 = this.cacheL2_other.Bloques_memoria.get(this.cacheL2_other.LastHIT).Dato;
+                      this.cacheL2_on_use.escribirDato(instruccion.Numero_nucleo,instruccion.Numero_chip ,instruccion.Direccion_memoria ,Dato_hermano1);
+                      this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                      
+                      
+                      //Se lee
+                      cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                      this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                      
+                        //Se actualiza directorio
+                    directorio.setDirty_Bit("0");
+                    directorio.setPresencia_en_CacheL2_1("1");
+                    directorio.setPresencia_en_CacheL2_2("1");
+                  }
+             
+               case "011":
+            
+   
+                      //Se lee
+                      cacheL2_on_use.leerDato(cacheL2_on_use.LastHIT, instruccion.Numero_nucleo, instruccion.Numero_chip);
+                      this.Log.setLastLog(cacheL2_on_use.devolverLog());
+                      this.Log.WriteLastLog();
+                 break;
+         }
+         }
+         catch(Exception e){
+                 System.out.println(e);
+                 }
     }
     
     

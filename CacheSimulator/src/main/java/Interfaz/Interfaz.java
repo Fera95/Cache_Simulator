@@ -41,8 +41,10 @@ public class Interfaz  extends JFrame {
    
     private JTable MemoriaCacheL1_1_Procesador0;
     private JTable MemoriaCacheL1_2_Procesador0;
+    
     private JTable MemoriaCacheL1_1_Procesador1;
     private JTable MemoriaCacheL1_2_Procesador1;
+    
     private JTable MemoriaCacheL2_Procesador0;
     private JTable MemoriaCacheL2_Procesador1;
     private JTable MemoriaPrincipal;
@@ -271,17 +273,17 @@ public class Interfaz  extends JFrame {
         this.clk = clk;
         
         Jscrollpanel1.setPreferredSize(new Dimension(400,75));
-        Jscrollpanel1.setBorder(BorderFactory.createTitledBorder ("Cache L1 1 Procesador0"));
+        Jscrollpanel1.setBorder(BorderFactory.createTitledBorder ("Cache L1 Procesador0 Chip 0"));
         
         Jscrollpanel2.setPreferredSize(new Dimension(400,75));
-        Jscrollpanel2.setBorder(BorderFactory.createTitledBorder ("Cache L1 2 Procesador0"));
+        Jscrollpanel2.setBorder(BorderFactory.createTitledBorder ("Cache L1  Procesador1 Chip 0"));
         
         
         Jscrollpanel3.setPreferredSize(new Dimension(400,75));
-        Jscrollpanel3.setBorder(BorderFactory.createTitledBorder ("Cache L1 1 Procesador1"));
+        Jscrollpanel3.setBorder(BorderFactory.createTitledBorder ("Cache L1 Procesador0 Chip1 "));
         
         Jscrollpanel4.setPreferredSize(new Dimension(400,75));
-        Jscrollpanel4.setBorder(BorderFactory.createTitledBorder ("Cache L1 2 Procesador1"));
+        Jscrollpanel4.setBorder(BorderFactory.createTitledBorder ("Cache L1  Procesador1 Chip1"));
         
         
         Jscrollpanel5.setPreferredSize(new Dimension(400,110));

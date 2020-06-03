@@ -126,7 +126,7 @@ public class Memoria implements Constantes{
             LocalDateTime now = LocalDateTime.now();
             String timeStamp = dtf.format(now);
             this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
-            +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
+            +"Se escribio el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
             
             if("I".equals(estado)){
                 this.Bloques_memoria.remove(i);
@@ -150,7 +150,7 @@ public class Memoria implements Constantes{
             LocalDateTime now = LocalDateTime.now();
             String timeStamp = dtf.format(now);
             this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
-            +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
+            +"Se escribio el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + i;
    
              
             if("S".equals(estado)){
@@ -174,7 +174,7 @@ public class Memoria implements Constantes{
             LocalDateTime now = LocalDateTime.now();
             String timeStamp = dtf.format(now);
               this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
-               +" escribip el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + 0;
+               +"Se escribio el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + 0;
          }
         
         
@@ -201,7 +201,7 @@ public class Memoria implements Constantes{
 	LocalDateTime now = LocalDateTime.now();
 	String timeStamp = dtf.format(now);
         this.Log = timeStamp + " , " + Numero_chip + " ," + Numero_nucleo + " , " + " Detalle: "
-               +" Leyo el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + Index;
+               +"Se leyo el dato : " + bloque.getDato() + "que apunta a la dirección de mem " + bloque.getDireccionGuarda() + " de " + this.Nombre + " en la posición " + Index;
         
     }
      

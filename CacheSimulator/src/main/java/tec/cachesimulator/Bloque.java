@@ -21,7 +21,7 @@ public class Bloque {
     String StringDueños;
     String DireccionGuarda;
     public List<String> Dueños;
-    boolean isShared;
+   
 
     public Bloque(String Direccion, String Dato) {
         this.Direccion = Direccion;
@@ -53,10 +53,7 @@ public class Bloque {
         return Dato;
     }
 
-    public boolean isIsShared() {
-        return isShared;
-    }
-
+   
     public void setDireccion(String Direccion) {
         this.Direccion = Direccion;
     }
@@ -135,9 +132,7 @@ public class Bloque {
         this.Dato = Dato;
     }
 
-    public void setIsShared(boolean isShared) {
-        this.isShared = isShared;
-    }
+
 
 
          
@@ -150,6 +145,8 @@ public class Bloque {
         }
     }
 
+   
+    
     public String getStringDueños() {
         return StringDueños;
     }

@@ -81,12 +81,19 @@ public void generarInstruccion(){
                         
                         if("CALC".equals(operacion_tomada) || "READ".equals(operacion_tomada)){
                             //Dato well known por el momento
-                         dato_well_known = "READ";
+                         dato_well_known = " ";
                          isWrite = false;
                         }
                         else{
                             //Tiene que cambiarse por lista random de datos de 32 bits
-                              dato_well_known = "4A3B";
+                            
+                            // Se crea un random en decimal 
+                            
+                             double random_double = Math.random() * (65535 - 0 + 1) + 0; 
+                             int value = (int)random_double;
+                             String Hex=Integer.toHexString(value);
+                             
+                              dato_well_known = Hex.toUpperCase();
                                isWrite = true;
                         }
                         
@@ -96,6 +103,7 @@ public void generarInstruccion(){
                                                                   direccion_tomada, dato_well_known);
                         
                       
+                        instruccion.print_info();
                         
                         //Se le envía la instrucción a la clase cache
                         this.cache.setInstruccion_Actual(instruccion);
